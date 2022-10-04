@@ -1,12 +1,32 @@
 import React from "react";
-import { BuyContainer, HeaderContainer, RentContainer } from "./styles";
+import images from "../../assets";
+import houseLogo from "../../assets";
+import {
+  BuyButton,
+  BuyContainer,
+  HeaderContainer,
+  Logo,
+  RentButton,
+  RentContainer,
+} from "./styles";
 
 export default function Home() {
   return (
-    <div>
-      <HeaderContainer> Homestead</HeaderContainer>
-      <RentContainer> Rent homes here</RentContainer>
-      <BuyContainer>Buy a home here</BuyContainer>
-    </div>
+    <>
+      <HeaderContainer>
+        <Logo src={images.houseLogo}></Logo>
+      </HeaderContainer>
+      Navbar placeholder
+      <RentContainer>
+        Rent homes here
+        <RentButton>Click to rent</RentButton>
+        <div>slider</div>
+      </RentContainer>
+      <BuyContainer>
+        Buy a home here
+        <BuyButton>CLick to buy</BuyButton>
+        <div>slider</div>
+      </BuyContainer>
+    </>
   );
 }
