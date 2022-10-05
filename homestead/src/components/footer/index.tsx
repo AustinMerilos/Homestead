@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "./styles";
 
 interface FooterProps {
   subtitle: string;
@@ -6,10 +7,12 @@ interface FooterProps {
 }
 const Footer = ({ subtitle, title }: FooterProps) => {
   return (
-    <>
+    <Container>
       <div>{title}</div>
       <div>{subtitle}</div>
-    </>
+      <div>{subtitle}</div>
+      <div>{subtitle}</div>
+    </Container>
   );
 };
 

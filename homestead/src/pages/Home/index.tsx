@@ -1,13 +1,19 @@
 import React from "react";
 import images from "../../assets";
-import houseLogo from "../../assets";
+import Footer from "../../components/footer";
+import SearchBar from "../../components/searchBar";
+import constants from "./constants";
 import {
-  BuyButton,
-  BuyContainer,
+  Container,
   HeaderContainer,
   Logo,
-  RentButton,
-  RentContainer,
+  RentBanner,
+  BannerContainer,
+  BannerContainerContent,
+  BannerButton,
+  BannerTitle,
+  BannerDescription,
+  BuyBanner,
 } from "./styles";
 
 export default function Home() {
@@ -16,17 +22,34 @@ export default function Home() {
       <HeaderContainer>
         <Logo src={images.houseLogo}></Logo>
       </HeaderContainer>
-      Navbar placeholder
-      <RentContainer>
-        Rent homes here
-        <RentButton>Click to rent</RentButton>
-        <div>slider</div>
-      </RentContainer>
-      <BuyContainer>
-        Buy a home here
-        <BuyButton>CLick to buy</BuyButton>
-        <div>slider</div>
-      </BuyContainer>
+      <SearchBar />
+      <Container>
+        <BannerContainer>
+          <RentBanner />
+          <BannerContainerContent>
+            <BannerTitle>{constants.rentProperty.title}</BannerTitle>
+            <BannerDescription>
+              {constants.rentProperty.description}
+            </BannerDescription>
+            <BannerButton>{constants.rentProperty.button}</BannerButton>
+          </BannerContainerContent>
+        </BannerContainer>
+      </Container>
+      <div>slider</div>
+      <Container>
+        <BannerContainer>
+          <BuyBanner />
+          <BannerContainerContent>
+            <BannerTitle>{constants.buyProperty.title}</BannerTitle>
+            <BannerDescription>
+              {constants.buyProperty.description}
+            </BannerDescription>
+            <BannerButton>CLick to buy</BannerButton>
+          </BannerContainerContent>
+        </BannerContainer>
+      </Container>
+      <div>slider</div>
+      <Footer subtitle={"About"} title={"Carrer"}></Footer>
     </>
   );
 }
