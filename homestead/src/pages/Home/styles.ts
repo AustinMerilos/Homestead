@@ -47,8 +47,7 @@ display: flex;
   align-items: flex-start;
   height: 100%;
   width: 50%;
-  box-sizing: border-box;
-  `
+  box-sizing: border-box;`
 
   export const BannerDescription = styled.p`
   color: white;
@@ -64,16 +63,7 @@ display: flex;
   font-size: 2.5vw;
 `
 
-export const RentBanner = styled.div`
-  background: url(${images.rentBanner}) no-repeat
-    center/cover;
-
-  height: 100%;
-  width: 50%;`
-
-export const BuyBanner = styled.div`
-  background: url(${images.buyBanner}) no-repeat
-    center/cover;
+export const Banner = styled.img`
 
   height: 100%;
   width: 50%;
@@ -86,4 +76,11 @@ export const BannerButton = styled.button`
   font-weight: 500;
   margin-top: 6vw;
   cursor: pointer;`
+
+
+  export const SliderContainer = styled.div``
+  export const SliderTitle = styled.div``
+  export const SliderText = styled.div``
+  export const SliderSubText = styled.div``
+  export const SliderImage = styled.img``
 

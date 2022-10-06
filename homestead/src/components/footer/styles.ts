@@ -7,7 +7,10 @@ export const Container = styled(Grid).attrs({
   direction: 'column',
 })`
   background-color: teal;
-
-  padding: 60px 120px 100px;
-
+  padding: 1% 46% 1%;
 `;
+
+export const Font = styled.p`
+color: white;
+font-size: 18px;
+`

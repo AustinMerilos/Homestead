@@ -1,17 +1,13 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, Font } from "./styles";
 
 interface FooterProps {
-  subtitle: string;
   title: string;
 }
-const Footer = ({ subtitle, title }: FooterProps) => {
+const Footer = ({ title }: FooterProps) => {
   return (
     <Container>
-      <div>{title}</div>
-      <div>{subtitle}</div>
-      <div>{subtitle}</div>
-      <div>{subtitle}</div>
+      <Font>{title}</Font>
     </Container>
   );
 };

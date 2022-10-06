@@ -2,19 +2,10 @@ import React from "react";
 import images from "../../assets";
 import Footer from "../../components/footer";
 import SearchBar from "../../components/searchBar";
+import BannerSections from "./bannerSections";
 import constants from "./constants";
-import {
-  Container,
-  HeaderContainer,
-  Logo,
-  RentBanner,
-  BannerContainer,
-  BannerContainerContent,
-  BannerButton,
-  BannerTitle,
-  BannerDescription,
-  BuyBanner,
-} from "./styles";
+import Slider from "./slides";
+import { HeaderContainer, Logo } from "./styles";
 
 export default function Home() {
   return (
@@ -23,33 +14,31 @@ export default function Home() {
         <Logo src={images.houseLogo}></Logo>
       </HeaderContainer>
       <SearchBar />
-      <Container>
-        <BannerContainer>
-          <RentBanner />
-          <BannerContainerContent>
-            <BannerTitle>{constants.rentProperty.title}</BannerTitle>
-            <BannerDescription>
-              {constants.rentProperty.description}
-            </BannerDescription>
-            <BannerButton>{constants.rentProperty.button}</BannerButton>
-          </BannerContainerContent>
-        </BannerContainer>
-      </Container>
-      <div>slider</div>
-      <Container>
-        <BannerContainer>
-          <BuyBanner />
-          <BannerContainerContent>
-            <BannerTitle>{constants.buyProperty.title}</BannerTitle>
-            <BannerDescription>
-              {constants.buyProperty.description}
-            </BannerDescription>
-            <BannerButton>CLick to buy</BannerButton>
-          </BannerContainerContent>
-        </BannerContainer>
-      </Container>
-      <div>slider</div>
-      <Footer subtitle={"About"} title={"Carrer"}></Footer>
+      <BannerSections
+        image={images.rentBanner}
+        description={constants.rentProperty.description}
+        title={constants.rentProperty.title}
+        button={constants.rentProperty.button}
+      ></BannerSections>
+      <Slider
+        title={"Checkout our properties to rent"}
+        subtitle={"s"}
+        description={"s"}
+        image={"s"}
+      ></Slider>
+      <BannerSections
+        image={images.buyBanner}
+        description={constants.buyProperty.description}
+        title={constants.buyProperty.title}
+        button={constants.buyProperty.button}
+      ></BannerSections>
+      <Slider
+        title={"Checkout our properties to buy"}
+        subtitle={"s"}
+        description={"s"}
+        image={"s"}
+      ></Slider>
+      <Footer title={"2022 Homestead"}></Footer>
     </>
   );
 }
