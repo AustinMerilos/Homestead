@@ -7,7 +7,7 @@ import {
 } from "./styles";
 
 type bannerSliderItems = {
-  title: string;
+  title?: string;
   subtitle: string;
   description: string;
   image: string;
