@@ -1,39 +1,35 @@
-import React from "react";
 import { Typography,Grid } from '@material-ui/core';
 import styled from 'styled-components';
 import images from "../../assets";
 
 export const HeaderContainer = styled.div`
-  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  height: 20vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-around;
   background:url(${images.banner});
+  background-position-y: bottom;
+  background-position-x: unset;
+  background-size: cover;
+  margin: 1vw 0 4vw;
 
- background-position-y: bottom;
- background-position-x: unset;
- background-size: cover;
- height: 15vw;
- width: 100vw;
 `;
 
-export const Logo = styled.img`
-  height: 12%;
-  width: 12%;
-  
-`;
 
 
 export const Container = styled(Grid).attrs({
   container: true,
   direction: 'column',
 })<{ $fullWidth?: boolean }>`
-  padding: 50px 0;
+  padding: 0 0 4vw 0;
   max-width: 1230px;
-
   margin: 0 auto;`;
 
 export const BannerContainer = styled.div`
-display: flex;
+  display: flex;
   flex-direction: row;
-  height: 40vw;
   max-height: 380px;
   border-radius: 18px;
   overflow: hidden;`
@@ -42,45 +38,73 @@ display: flex;
   background-color: gray;
   display: flex;
   flex-direction: column;
-  padding: 0 3vw;
+  padding: 2vw 3vw;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 100%;
-  width: 50%;
   box-sizing: border-box;`
 
   export const BannerDescription = styled.p`
   color: white;
-  font-size: 1.8vw;
+  font-size: 1.6vw;
   line-height: 160%;`
 
   export const BannerTitle = styled(Typography).attrs({
-  variant: 'h2',
+  variant: 'h3',
 })`
-
   color: white;
   font-weight: 700;
   font-size: 2.5vw;
 `
 
 export const Banner = styled.img`
-
-  height: 100%;
+  display: flex;
   width: 50%;
   `
 export const BannerButton = styled.button`
   
   background-color: teal;
+  padding: 0 1vw 0 1vw;
+  color: white;
   border-radius: 15px;
   font-size: 1.7vw;
   font-weight: 500;
-  margin-top: 6vw;
-  cursor: pointer;`
+  cursor: pointer;
+  margin-bottom: 1.2vw`
 
 
-  export const SliderContainer = styled.div``
-  export const SliderTitle = styled.div``
-  export const SliderText = styled.div``
-  export const SliderSubText = styled.div``
-  export const SliderImage = styled.img``
+  export const PropertySectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 3vw 4vw;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  box-sizing: border-box;`
+
+  export const PropertySectionInnerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  `
+  
+  export const PropertySectionTitle = styled(Typography).attrs({
+  variant: 'h6',
+})`
+
+  color: black;
+  font-weight: 700;
+  font-size: 2.5vw;
+`
+  export const PropertySectionText = styled.div` 
+  margin: 5px;
+  `
+  export const PropertySectionImage = styled.img`
+  margin: 1vw;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: teal;
+  float: left;
+  width:  25vw;
+  height: 20vw;
+  object-fit: cover;`
 

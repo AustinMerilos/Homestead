@@ -1,17 +1,19 @@
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import {
   PropertySectionContainer,
   PropertySectionImage,
-  PropertySectionSubText,
   PropertySectionText,
   PropertySectionTitle,
 } from "./styles";
 
-type bannerSectionItems = {
+type BannerSectionItems = {
   title?: string;
-  price?: string;
+  price: number;
   image?: string;
   rooms?: string;
   baths?: string;
+  link: string;
 };
 
 export default function PropertySection({
@@ -20,14 +22,27 @@ export default function PropertySection({
   image,
   rooms,
   baths,
-}: bannerSectionItems) {
+  link,
+}: BannerSectionItems) {
+  const numberFormat = (value: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(value);
+
+  const formater = useMemo(() => numberFormat(price), [price]);
+
   return (
     <PropertySectionContainer>
-      <PropertySectionTitle>{title}</PropertySectionTitle>
-      <PropertySectionImage src={image}></PropertySectionImage>
-      <PropertySectionSubText>PRICE:{price}$</PropertySectionSubText>
-      <PropertySectionText>ROOMS:{rooms}</PropertySectionText>
-      <PropertySectionText>BATHS:{baths}</PropertySectionText>
+      <Link to={link}>
+        <PropertySectionImage src={image}></PropertySectionImage>
+      </Link>
+      <PropertySectionTitle>
+        {(title?.length ?? 0) > 30 ? `${title?.substring(0, 30)}...` : title}
+      </PropertySectionTitle>
+      <PropertySectionText>PRICE:{formater}</PropertySectionText>
+      <PropertySectionText>ROOMS: {rooms}</PropertySectionText>
+      <PropertySectionText>BATHS: {baths}</PropertySectionText>
     </PropertySectionContainer>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   BannerButton,
   BannerContainer,
@@ -13,6 +14,7 @@ type SectionItems = {
   title: string;
   button: string;
   image: string;
+  link: string;
 };
 
 export default function BannerSections({
@@ -20,6 +22,7 @@ export default function BannerSections({
   title,
   button,
   image,
+  link,
 }: SectionItems) {
   return (
     <>
@@ -29,7 +32,10 @@ export default function BannerSections({
           <BannerContainerContent>
             <BannerTitle>{title}</BannerTitle>
             <BannerDescription>{description}</BannerDescription>
-            <BannerButton>{button}</BannerButton>
+            <Link to={link}>
+              {" "}
+              <BannerButton>{button}</BannerButton>
+            </Link>
           </BannerContainerContent>
         </BannerContainer>
       </Container>
