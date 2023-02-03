@@ -38,7 +38,8 @@ export default {
     title: "Need a place to rent?",
     description:
       "Come and look at all the avaible properties that are rentable in your area! ",
-    button: "Click to rent",
+    button: "Search Renting",
+    link: "/search?purpose=for-rent",
   },
 
   buyProperty: {
@@ -48,6 +49,7 @@ export default {
     title: "Looking to buy?",
     description:
       "Explore thousandes of our listed properties that are avaiable to buy!",
-    button: "Click to buy",
+    button: "Search Buying",
+    link: "/search?purpose=for-sale",
   },
 } as const;

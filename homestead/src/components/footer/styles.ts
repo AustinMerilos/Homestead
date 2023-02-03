@@ -8,6 +8,7 @@ export const Container = styled(Grid).attrs({
 })`
   background-color: teal;
   padding: 1% 46% 1%;
+  margin-top: 6vw
 `;
 
 export const Font = styled.p`
