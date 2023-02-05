@@ -7,7 +7,7 @@ interface BannerItem {
     borderRadius?: string | number;
   };
   title: string;
-  description?: string | ((...args: any[]) => string);
+  description?: string | ((...args: string[]) => string);
   button: string;
 }
 
