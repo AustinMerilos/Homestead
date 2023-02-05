@@ -1,4 +1,5 @@
 import { Button, Grid, Typography } from "@material-ui/core";
+import CircularProgress from "@mui/material/CircularProgress";
 import styled from "styled-components";
 
 
@@ -12,6 +13,13 @@ export const Container = styled(Grid).attrs({
   margin-top: 2vw;
 
 `
+export const Loader = styled(CircularProgress).attrs({size: 250})`
+  && {
+    margin: 200px 800px;
+    align-self: center;
+    color: teal;
+  }
+`;
 export const InnerContainer = styled(Grid).attrs({
   container: true,
   direction: 'row',

@@ -7,6 +7,7 @@ import {
   NoResults,
   NoResultsContainer,
   NoResultsTitle,
+  Loader,
 } from "./styles";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PropertySection from "../Home/sections";
@@ -25,6 +26,7 @@ type PropertyType = {
 };
 
 function Search() {
+  const [loading, setLoading] = useState(false);
   const [searchFilters, setSearchFilters] = useState(false);
   const [propertyArray, setPropertyArray] = useState([]);
   const [searchParams] = useSearchParams();
@@ -48,6 +50,7 @@ function Search() {
       `${bayutUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=25&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
     );
     const searchData = results.hits;
+    setLoading(true);
     setPropertyArray(searchData);
   }, [
     areaMax,
@@ -84,24 +87,29 @@ function Search() {
           </>
         )}
       </Container>
-
-      <InnerContainer>
-        {propertyArray.map((property: PropertyType) => (
-          <PropertySection
-            image={property.coverPhoto.url}
-            title={property.title}
-            price={property.price}
-            rooms={property.rooms}
-            baths={property.baths}
-            link={`/search/property/${property.externalID}`}
-          ></PropertySection>
-        ))}
-      </InnerContainer>
-      {propertyArray.length === 0 && (
-        <NoResultsContainer>
-          <NoResults src={images.noresults}></NoResults>
-          <NoResultsTitle> No Results Found</NoResultsTitle>
-        </NoResultsContainer>
+      {loading === false ? (
+        <Loader />
+      ) : (
+        <>
+          <InnerContainer>
+            {propertyArray.map((property: PropertyType) => (
+              <PropertySection
+                image={property.coverPhoto.url}
+                title={property.title}
+                price={property.price}
+                rooms={property.rooms}
+                baths={property.baths}
+                link={`/search/property/${property.externalID}`}
+              ></PropertySection>
+            ))}
+          </InnerContainer>
+          {propertyArray.length === 0 && (
+            <NoResultsContainer>
+              <NoResults src={images.noresults}></NoResults>
+              <NoResultsTitle> No Results Found</NoResultsTitle>
+            </NoResultsContainer>
+          )}
+        </>
       )}
     </>
   );

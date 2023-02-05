@@ -135,6 +135,7 @@ export default function Home() {
       });
   };
 
+  let urlString = "/search/property/";
   return (
     <>
       <HeaderContainer />
@@ -147,6 +148,9 @@ export default function Home() {
       ></BannerSections>
       <PropertySectionInnerContainer>
         {rentPropertyArray.map((array) => {
+          if (array.externalID === "") {
+            urlString = "";
+          }
           return (
             <PropertySection
               title={array.title}
@@ -154,7 +158,7 @@ export default function Home() {
               rooms={array.rooms}
               price={Number(array.price)}
               image={array.image}
-              link={`/search/property/${array.externalID}`}
+              link={`${urlString}${array.externalID}`}
             ></PropertySection>
           );
         })}
@@ -170,6 +174,9 @@ export default function Home() {
 
       <PropertySectionInnerContainer>
         {salePropertyArray.map((array) => {
+          if (array.externalID === "") {
+            urlString = "";
+          }
           return (
             <PropertySection
               title={array.title}
@@ -177,7 +184,7 @@ export default function Home() {
               rooms={array.rooms}
               price={Number(array.price)}
               image={array.image}
-              link={`/search/property/${array.externalID}`}
+              link={`${urlString}${array.externalID}`}
             ></PropertySection>
           );
         })}

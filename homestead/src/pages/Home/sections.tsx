@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { numberFormat } from "../../utiles/numberFormater";
 import {
   PropertySectionContainer,
   PropertySectionImage,
@@ -24,12 +25,6 @@ export default function PropertySection({
   baths,
   link,
 }: BannerSectionItems) {
-  const numberFormat = (value: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(value);
-
   const formater = useMemo(() => numberFormat(price), [price]);
 
   return (

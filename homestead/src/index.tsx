@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useRoutes,
+} from "react-router-dom";
 import NavBar from "./components/navBar";
 import Search from "./pages/Search";
 import Footer from "./components/footer";
@@ -18,6 +23,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/search" element={<Search />}></Route>
+          <Route path="/search/property/" element={<Search />}></Route>
           <Route path="/search?purpose=for-sale" element={<Search />}></Route>
           <Route path="/search?purpose=for-rent" element={<Search />}></Route>
           <Route
