@@ -9,12 +9,13 @@ import {
   Bath,
   Bed,
   Container,
+  Description,
   IconContainer,
   IconText,
   Loader,
   PriceContainer,
   PriceText,
-  SubText,
+  PropertyText,
   Title,
   Verified,
 } from "./styles";
@@ -89,10 +90,10 @@ export default function PropertyDetails() {
 
           <IconContainer>
             {verification === "verified" && <Verified />}
-            <Bath />
-            <IconText>{baths}</IconText>
             <Bed />
             <IconText>{rooms}</IconText>
+            <Bath />
+            <IconText>{baths}</IconText>
             <Area />
             <IconText>{areaFormater} sqft</IconText>
           </IconContainer>
@@ -101,9 +102,9 @@ export default function PropertyDetails() {
             <PriceText>Price: {formater} </PriceText>
             {rentFrequency && <PriceText>{rentFrequency}</PriceText>}
           </PriceContainer>
-          <SubText>PropertyType: {propertyType}</SubText>
+          <PropertyText>Property Type: {propertyType}</PropertyText>
 
-          <SubText>{description}</SubText>
+          <Description>{description}</Description>
           {/* <>{amenitites.map((item) => ({ text: item.text }))}</> */}
         </>
       )}

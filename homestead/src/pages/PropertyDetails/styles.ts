@@ -12,6 +12,7 @@ export const Container = styled(Grid).attrs({
   display: flex;
   padding: 60px 120px 10px;
   margin-top: 2vw;
+  margin-bottom: 10vw
 `;
 
 export const Loader = styled(CircularProgress).attrs({ size: 250 })`
@@ -60,12 +61,17 @@ export const Title = styled.div`
   align-self: center;
   font-size: 35px;
 `;
-export const SubText = styled.div`
+export const Description = styled.div`
   font-size: 25px;
-  margin-top: 16px;
+  padding: 40px 40px;
 `;
 export const PriceText = styled.div`
   font-size: 25px;
+  font-weight: bold;
+`;
+export const PropertyText = styled.div`
+  font-size: 20px;
+  margin-top: 10px;
   font-weight: bold;
 `;
 export const IconText = styled.div`

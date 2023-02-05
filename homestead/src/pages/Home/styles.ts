@@ -1,6 +1,10 @@
 import { Typography,Grid } from '@material-ui/core';
 import styled from 'styled-components';
 import images from "../../assets";
+import BedIcon from "@mui/icons-material/Bed";
+import BathtubIcon from "@mui/icons-material/Bathtub";
+import SquareFootIcon from "@mui/icons-material/SquareFoot";
+
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -86,6 +90,27 @@ export const BannerButton = styled.button`
   display: flex;
   flex-direction: row;
   `
+  export const Bed = styled(BedIcon)`
+  && {
+    color: teal;
+    height: 25spx;
+    width: 25px;
+  }
+`;
+  export const Area = styled(SquareFootIcon)`
+  && {
+    color: teal;
+    height: 25spx;
+    width: 25px;
+  }
+`;
+export const Bath = styled(BathtubIcon)`
+  && {
+    color: teal;
+    height: 25px;
+    width: 25px;
+  }
+`;
   
   export const PropertySectionTitle = styled(Typography).attrs({
   variant: 'h6',
@@ -96,8 +121,18 @@ export const BannerButton = styled.button`
   font-size: 2.5vw;
 `
   export const PropertySectionText = styled.div` 
-  margin: 5px;
+  margin: 12px 20px;
+  font-size: 20px;
   `
+
+  export const PropertySectionIconContainer = styled.div
+ `
+display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+ `;
   export const PropertySectionImage = styled.img`
   margin: 1vw;
   border-radius: 4px;

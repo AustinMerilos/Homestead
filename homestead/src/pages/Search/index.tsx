@@ -23,6 +23,7 @@ type PropertyType = {
   rooms?: string;
   baths?: string;
   externalID: string;
+  area: number;
 };
 
 function Search() {
@@ -99,6 +100,7 @@ function Search() {
                 price={property.price}
                 rooms={property.rooms}
                 baths={property.baths}
+                area={property.area}
                 link={`/search/property/${property.externalID}`}
               ></PropertySection>
             ))}

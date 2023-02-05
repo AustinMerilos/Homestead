@@ -14,6 +14,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -22,6 +23,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -30,6 +32,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -40,6 +43,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -48,6 +52,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -56,6 +61,7 @@ export default function Home() {
       baths: "NA",
       rooms: "NA",
       price: "NA",
+      area: "NA",
       image: "NA",
       externalID: "",
     },
@@ -76,6 +82,7 @@ export default function Home() {
             baths: response.data.hits[0].baths,
             rooms: response.data.hits[0].rooms,
             price: response.data.hits[0].price,
+            area: response.data.hits[0].area,
             externalID: response.data.hits[0].externalID,
           },
           {
@@ -84,6 +91,7 @@ export default function Home() {
             baths: response.data.hits[1].baths,
             rooms: response.data.hits[1].rooms,
             price: response.data.hits[1].price,
+            area: response.data.hits[1].area,
             externalID: response.data.hits[1].externalID,
           },
           {
@@ -92,6 +100,7 @@ export default function Home() {
             baths: response.data.hits[2].baths,
             rooms: response.data.hits[2].rooms,
             price: response.data.hits[2].price,
+            area: response.data.hits[2].area,
             externalID: response.data.hits[2].externalID,
           },
         ]);
@@ -110,6 +119,7 @@ export default function Home() {
             baths: response.data.hits[0].baths,
             rooms: response.data.hits[0].rooms,
             price: response.data.hits[0].price,
+            area: response.data.hits[0].area,
             externalID: response.data.hits[0].externalID,
           },
           {
@@ -118,6 +128,7 @@ export default function Home() {
             baths: response.data.hits[1].baths,
             rooms: response.data.hits[1].rooms,
             price: response.data.hits[1].price,
+            area: response.data.hits[1].area,
             externalID: response.data.hits[1].externalID,
           },
           {
@@ -126,6 +137,7 @@ export default function Home() {
             baths: response.data.hits[2].baths,
             rooms: response.data.hits[2].rooms,
             price: response.data.hits[2].price,
+            area: response.data.hits[2].area,
             externalID: response.data.hits[2].externalID,
           },
         ]);
@@ -157,6 +169,7 @@ export default function Home() {
               baths={array.baths}
               rooms={array.rooms}
               price={Number(array.price)}
+              area={Number(array.area)}
               image={array.image}
               link={`${urlString}${array.externalID}`}
             ></PropertySection>
@@ -183,6 +196,7 @@ export default function Home() {
               baths={array.baths}
               rooms={array.rooms}
               price={Number(array.price)}
+              area={Number(array.area)}
               image={array.image}
               link={`${urlString}${array.externalID}`}
             ></PropertySection>
