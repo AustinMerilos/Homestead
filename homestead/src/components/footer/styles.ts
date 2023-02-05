@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 
 export const Container = styled(Grid).attrs({
-  container: true,
-  direction: 'column',
+  direction: 'row',
 })`
   background-color: teal;
   padding: 1% 46% 1%;
-  margin-top: 6vw
+  margin-top: 6vw;
+  position: absolute;
+  right: 0;
+  left: 0;
 `;
 
 export const Font = styled.p`
