@@ -7,12 +7,20 @@ export const Container = styled(Grid).attrs({
 })<{ $fullWidth?: boolean }>`
   padding: 0 0 4vw 0;
   max-width: 1230px;
-  margin: 0 auto;`;
+  margin: 0 auto;
+  @media (max-width: 576px) {
+    padding: 1vw;
+  }
+  `;
 export const FilterContainer = styled(Grid).attrs({
   container: true,
   direction: 'row',
 })<{ $fullWidth?: boolean }>`
   padding: 0 0 4vw 0;
   max-width: 1230px;
-  margin: 0 auto;`;
+  margin: 0 auto;
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+`;
 export const FilterTitle = styled.div``

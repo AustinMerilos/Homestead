@@ -12,7 +12,11 @@ export const Container = styled(Grid).attrs({
   display: flex;
   padding: 60px 120px 10px;
   margin-top: 2vw;
-  margin-bottom: 10vw
+  margin-bottom: 10vw;
+  @media (max-width: 390px) {
+      padding: 50px 20px 10px;
+       margin-top: 12vw;
+  }
 `;
 
 export const Loader = styled(CircularProgress).attrs({ size: 250 })`
@@ -20,6 +24,13 @@ export const Loader = styled(CircularProgress).attrs({ size: 250 })`
     margin: 250px;
     align-self: center;
     color: teal;
+
+    @media (max-width: 390px) {
+    && {
+      size: 25;
+      margin: 25px;
+    }
+  }
   }
 `;
 
@@ -49,35 +60,49 @@ export const IconContainer = styled(Grid).attrs({
   display: flex;
   margin-bottom: 10px;
 `;
-export const PriceContainer = styled(Grid).attrs({
+export const TextContainer = styled(Grid).attrs({
   container: true,
   direction: "row",
 })`
   display: flex;
   white-space: break-spaces;
   margin-top: 20px;
+  justify-content: space-between;
+`;
+export const TextHeaders = styled.div`
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: capitalize;
+  @media (max-width: 390px) {
+      font-size: 15px;
+  }
 `;
 export const Title = styled.div`
   align-self: center;
   font-size: 35px;
+
+  @media (max-width: 390px) {
+      font-size: 15px;
+  }
 `;
 export const Description = styled.div`
   font-size: 25px;
   padding: 40px 40px;
+
+  @media (max-width: 390px) {
+      font-size: 15px;
+  }
 `;
-export const PriceText = styled.div`
-  font-size: 25px;
-  font-weight: bold;
-`;
-export const PropertyText = styled.div`
-  font-size: 20px;
-  margin-top: 10px;
-  font-weight: bold;
-`;
+
+
 export const IconText = styled.div`
   margin: 0 30px 0 10px;
   font-size: 20px;
   font-weight: bold;
+
+  @media (max-width: 390px) {
+      font-size: 20px;
+  }
 `;
 export const Bed = styled(BedIcon)`
   && {
@@ -106,5 +131,34 @@ export const Area = styled(SquareFootIcon)`
     color: teal;
     height: 25px;
     width: 25px;
+  }
+`;
+export const AmenitiesContainer = styled(Grid).attrs({
+  container: true,
+  direction: "row",
+})`
+  display: flex;
+  white-space: break-spaces;
+  margin-top: 20px;
+  justify-content: space-evenly;
+  font-size: 20px;
+  color: white;
+`;
+export const AmenitiesTitle = styled.div`
+ font-size: 25px;
+ font-weight: bold;
+
+  @media (max-width: 390px) {
+      font-size: 15px;
+  }
+`;
+export const Amenitiesitem = styled.div`
+margin-top: inherit;
+background: teal;
+padding: 20px;
+border-radius: 10px;
+
+ @media (max-width: 390px) {
+      padding: 5px;
   }
 `;

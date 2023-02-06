@@ -16,4 +16,10 @@ export const Container = styled(Grid).attrs({
 export const Font = styled.p`
 color: white;
 font-size: 18px;
+
+@media (max-width: 414px) {
+    font-size: 12px;
+    margin-top: 2vw;
+    padding: 1% 12% 1%;
+  }
 `

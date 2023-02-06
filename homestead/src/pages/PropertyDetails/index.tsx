@@ -1,3 +1,4 @@
+import { OtherHouses } from "@mui/icons-material";
 import React, { useMemo } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -5,6 +6,9 @@ import { bayutUrl, fetchApi } from "../../utiles/fetchApi";
 import { areaFormat, numberFormat } from "../../utiles/numberFormater";
 import Carousel from "./carousel";
 import {
+  AmenitiesContainer,
+  Amenitiesitem,
+  AmenitiesTitle,
   Area,
   Bath,
   Bed,
@@ -13,9 +17,8 @@ import {
   IconContainer,
   IconText,
   Loader,
-  PriceContainer,
-  PriceText,
-  PropertyText,
+  TextContainer,
+  TextHeaders,
   Title,
   Verified,
 } from "./styles";
@@ -26,7 +29,7 @@ type PropertyType = {
 
 export default function PropertyDetails() {
   const { id } = useParams<PropertyType>();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [title, setTitle] = useState();
   const [baths, setBaths] = useState();
@@ -36,9 +39,10 @@ export default function PropertyDetails() {
   const [description, setDescription] = useState();
   const [rentFrequency, setRentFrequency] = useState();
   const [photos, setPhotos] = useState([{ title: "", url: "" }]);
-  const [amenitites, setAmenitites] = useState([{ text: "" }]);
+  const [amenities, setAmenities] = useState([]);
   const [verification, setVerification] = useState();
   const [purpose, setPurpose] = useState();
+  const [furnishingStatus, setFurnishingStatus] = useState();
   const formater = useMemo(() => numberFormat(Number(price)), [price]);
   const areaFormater = useMemo(() => areaFormat(Number(area)), [area]);
 
@@ -47,19 +51,23 @@ export default function PropertyDetails() {
       `${bayutUrl}/properties/detail?externalID=${id}`
     );
     const searchData = results;
+    const amenitiesText = searchData.amenities.map(
+      (amenity: { text: string }) => amenity.text
+    );
+
+    setAmenities(amenitiesText);
     setTitle(searchData.title);
     setRooms(searchData.rooms);
     setPrice(searchData.price);
     setBaths(searchData.baths);
     setArea(searchData.area);
     setPurpose(searchData.purpose);
+    setFurnishingStatus(searchData.furnishingStatus);
     setRentFrequency(searchData.rentFrequency);
     setDescription(searchData.description);
     setPhotos(searchData.photos);
-    setAmenitites(searchData.amenitites);
     setVerification(searchData.verification.status);
-    setLoading(true);
-    console.log(searchData);
+    setLoading(false);
   }, [id]);
 
   useEffect(() => {
@@ -76,7 +84,7 @@ export default function PropertyDetails() {
 
   return (
     <Container>
-      {loading === false ? (
+      {loading === true ? (
         <Loader />
       ) : (
         <>
@@ -97,15 +105,26 @@ export default function PropertyDetails() {
             <Area />
             <IconText>{areaFormater} sqft</IconText>
           </IconContainer>
-
-          <PriceContainer>
-            <PriceText>Price: {formater} </PriceText>
-            {rentFrequency && <PriceText>{rentFrequency}</PriceText>}
-          </PriceContainer>
-          <PropertyText>Property Type: {propertyType}</PropertyText>
+          <IconContainer>
+            <TextContainer>
+              <TextHeaders>Price: {formater} </TextHeaders>
+              {rentFrequency && <TextHeaders>{rentFrequency}</TextHeaders>}
+              <TextHeaders>Property Type: {propertyType}</TextHeaders>
+              <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
+            </TextContainer>
+          </IconContainer>
 
           <Description>{description}</Description>
-          {/* <>{amenitites.map((item) => ({ text: item.text }))}</> */}
+          {amenities.length > 0 && (
+            <>
+              <AmenitiesTitle>Amenities:</AmenitiesTitle>
+              <AmenitiesContainer>
+                {amenities.map((amenity, index) => (
+                  <Amenitiesitem key={index}>{amenity}</Amenitiesitem>
+                ))}
+              </AmenitiesContainer>
+            </>
+          )}
         </>
       )}
     </Container>

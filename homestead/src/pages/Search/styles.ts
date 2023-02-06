@@ -12,6 +12,10 @@ export const Container = styled(Grid).attrs({
   padding: 60px 120px 10px;
   margin-top: 2vw;
 
+  @media (max-width: 960px) {
+    padding: 20px 60px 10px;
+    margin-top: 20vw;
+  }
 `
 export const Loader = styled(CircularProgress).attrs({size: 250})`
   && {
@@ -19,6 +23,10 @@ export const Loader = styled(CircularProgress).attrs({size: 250})`
     align-self: center;
     color: teal;
   }
+
+  && {@media (max-width: 960px) {
+    margin: 100px 50px;
+  }}
 `;
 export const InnerContainer = styled(Grid).attrs({
   container: true,
@@ -28,6 +36,9 @@ export const InnerContainer = styled(Grid).attrs({
   padding: 60px 120px 10px;
   margin-top: 4vw;
 
+  @media (max-width: 960px) {
+    padding: 20px 60px 10px;
+  }
 `
 export const NoResultsContainer = styled(Grid).attrs({
   container: true,
@@ -46,6 +57,12 @@ export const NoResultsTitle= styled(Typography).attrs({
 `
   align-self: center;
   font-weight: bold;
+
+  && {
+    @media (max-width: 960px) {
+    font-size:24px;
+  }
+}
 
 `
 export const FilterButton= styled(Button)`
