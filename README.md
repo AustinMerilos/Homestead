@@ -6,7 +6,7 @@
 
 # Homestead Website
 
-A website to search for real estate that are for sale or for rent. This site includes a homepage, navbar, searchpage with a filter and a property detail page.
+A website to search for real estate that are for sale or for rent. This site includes a homepage, navbar, searchpage with a filter and a property detail page with a image carousel.
 The data used is from the Bayut api from rapidapi (https://rapidapi.com/apidojo/api/bayut)
 built using [React](https://reactjs.org). 
 
@@ -97,4 +97,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 <p>React-router (https://reactrouter.com/en/main).</p>
 <p>React-hooks (https://reactjs.org/docs/hooks-intro.html).</p>
 <p>TypeScript (https://www.typescriptlang.org).</p>
+<p>Material UI (https://mui.com).</p>
 
