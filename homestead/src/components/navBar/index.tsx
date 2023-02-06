@@ -10,8 +10,12 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const checkIfClickedOutside = (e: { target: any }) => {
-      if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+    const checkIfClickedOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        ref.current &&
+        !ref.current.contains(event.target as Node)
+      ) {
         setIsMenuOpen(false);
       }
     };
