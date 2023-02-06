@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import images from "../../assets";
-import { rentOptions, saleOptions } from "../../utiles/fetchApi";
+import { bayutUrl, fetchApi } from "../../utiles/fetchApi";
 import BannerSections from "./bannerSections";
 import constants from "./constants";
 import PropertySection from "./sections";
@@ -67,85 +67,78 @@ export default function Home() {
     },
   ]);
 
-  useEffect(() => {
-    getData();
+  const getResults = useCallback(async () => {
+    const results = await fetchApi(
+      `${bayutUrl}/properties/list?locationExternalIDs=5002%2C6020&purpose=for-sale&hitsPerPage=3&page=0&lang=en`
+    );
+    const rentResults = await fetchApi(
+      `${bayutUrl}/properties/list?locationExternalIDs=5002%2C6020&purpose=for-rent&hitsPerPage=3&page=0&lang=en`
+    );
+    const searchData = results.hits;
+    const rentData = rentResults.hits;
+    setSalePropertyArray([
+      {
+        title: searchData[0].title,
+        image: searchData[0].coverPhoto.url,
+        baths: searchData[0].baths,
+        rooms: searchData[0].rooms,
+        price: searchData[0].price,
+        area: searchData[0].area,
+        externalID: searchData[0].externalID,
+      },
+      {
+        title: searchData[1].title,
+        image: searchData[1].coverPhoto.url,
+        baths: searchData[1].baths,
+        rooms: searchData[1].rooms,
+        price: searchData[1].price,
+        area: searchData[1].area,
+        externalID: searchData[1].externalID,
+      },
+      {
+        title: searchData[2].title,
+        image: searchData[2].coverPhoto.url,
+        baths: searchData[2].baths,
+        rooms: searchData[2].rooms,
+        price: searchData[2].price,
+        area: searchData[2].area,
+        externalID: searchData[2].externalID,
+      },
+    ]);
+    setRentPropertyArray([
+      {
+        title: rentData[0].title,
+        image: rentData[0].coverPhoto.url,
+        baths: rentData[0].baths,
+        rooms: rentData[0].rooms,
+        price: rentData[0].price,
+        area: rentData[0].area,
+        externalID: rentData[0].externalID,
+      },
+      {
+        title: rentData[1].title,
+        image: rentData[1].coverPhoto.url,
+        baths: rentData[1].baths,
+        rooms: rentData[1].rooms,
+        price: rentData[1].price,
+        area: rentData[1].area,
+        externalID: rentData[1].externalID,
+      },
+      {
+        title: rentData[2].title,
+        image: rentData[2].coverPhoto.url,
+        baths: rentData[2].baths,
+        rooms: rentData[2].rooms,
+        price: rentData[2].price,
+        area: rentData[2].area,
+        externalID: rentData[2].externalID,
+      },
+    ]);
   }, []);
 
-  const getData = () => {
-    axios
-      .request(saleOptions)
-      .then(function (response) {
-        setSalePropertyArray([
-          {
-            title: response.data.hits[0].title,
-            image: response.data.hits[0].coverPhoto.url,
-            baths: response.data.hits[0].baths,
-            rooms: response.data.hits[0].rooms,
-            price: response.data.hits[0].price,
-            area: response.data.hits[0].area,
-            externalID: response.data.hits[0].externalID,
-          },
-          {
-            title: response.data.hits[1].title,
-            image: response.data.hits[1].coverPhoto.url,
-            baths: response.data.hits[1].baths,
-            rooms: response.data.hits[1].rooms,
-            price: response.data.hits[1].price,
-            area: response.data.hits[1].area,
-            externalID: response.data.hits[1].externalID,
-          },
-          {
-            title: response.data.hits[2].title,
-            image: response.data.hits[2].coverPhoto.url,
-            baths: response.data.hits[2].baths,
-            rooms: response.data.hits[2].rooms,
-            price: response.data.hits[2].price,
-            area: response.data.hits[2].area,
-            externalID: response.data.hits[2].externalID,
-          },
-        ]);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-
-    axios
-      .request(rentOptions)
-      .then(function (response) {
-        setRentPropertyArray([
-          {
-            title: response.data.hits[0].title,
-            image: response.data.hits[0].coverPhoto.url,
-            baths: response.data.hits[0].baths,
-            rooms: response.data.hits[0].rooms,
-            price: response.data.hits[0].price,
-            area: response.data.hits[0].area,
-            externalID: response.data.hits[0].externalID,
-          },
-          {
-            title: response.data.hits[1].title,
-            image: response.data.hits[1].coverPhoto.url,
-            baths: response.data.hits[1].baths,
-            rooms: response.data.hits[1].rooms,
-            price: response.data.hits[1].price,
-            area: response.data.hits[1].area,
-            externalID: response.data.hits[1].externalID,
-          },
-          {
-            title: response.data.hits[2].title,
-            image: response.data.hits[2].coverPhoto.url,
-            baths: response.data.hits[2].baths,
-            rooms: response.data.hits[2].rooms,
-            price: response.data.hits[2].price,
-            area: response.data.hits[2].area,
-            externalID: response.data.hits[2].externalID,
-          },
-        ]);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
+  useEffect(() => {
+    getResults();
+  }, [getResults]);
 
   let urlString = "/search/property/";
   return (
