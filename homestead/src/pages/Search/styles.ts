@@ -19,7 +19,7 @@ export const Container = styled(Grid).attrs({
 `
 export const Loader = styled(CircularProgress).attrs({size: 250})`
   && {
-    margin: 200px 800px;
+    margin: 200px 620px;
     align-self: center;
     color: teal;
   }
