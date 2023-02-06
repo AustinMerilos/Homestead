@@ -48,7 +48,7 @@ function Search() {
 
   const getResults = useCallback(async () => {
     const results = await fetchApi(
-      `${bayutUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=25&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
+      `${bayutUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=24&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
     );
     const searchData = results.hits;
     setLoading(true);
@@ -83,7 +83,7 @@ function Search() {
         {searchFilters && (
           <>
             <SearchFilters
-              purpose={searchParams.get("purpose")}
+              purpose={searchParams.get("purpose") || ""}
             ></SearchFilters>
           </>
         )}
