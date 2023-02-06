@@ -10,7 +10,10 @@ import { Container, FilterContainer, FilterTitle } from "./styles";
 import { filterData, getFilterValues } from "../../utiles/filterData";
 import { useSearchParams } from "react-router-dom";
 
-function SearchFilters({ purpose }: any) {
+interface SearchFiltersProps {
+  purpose: string;
+}
+const SearchFilters: React.FC<SearchFiltersProps> = ({ purpose = "" }) => {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -84,5 +87,5 @@ function SearchFilters({ purpose }: any) {
       </FilterContainer>
     </Container>
   );
-}
+};
 export default SearchFilters;
