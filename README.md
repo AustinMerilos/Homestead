@@ -1,7 +1,7 @@
 # Homestead
 
 <div align="center">
-<img src="homestead/src/assets/logo.png" alt="Logo" width="200"/>
+<img src="src/assets/logo.png" alt="Logo" width="200"/>
 </div>
 
 # Homestead Website
@@ -14,10 +14,10 @@ built using [React](https://reactjs.org).
 
 <div float="left">
 <img
-src="homestead/public/sampleScreens/homepageDemo.gif"height="auto" width="400" />
-<img src="homestead/public/sampleScreens/navbarDemo.gif"height="auto" width="400" />
-<img src="homestead/public/sampleScreens/searchFilterDemo.gif "height="auto" width="400" />
-<img src="homestead/public/sampleScreens/propertyDetailsDemo.gif"height="auto" width="400" />
+src="public/sampleScreens/homepageDemo.gif"height="auto" width="400" />
+<img src="public/sampleScreens/navbarDemo.gif"height="auto" width="400" />
+<img src="public/sampleScreens/searchFilterDemo.gif "height="auto" width="400" />
+<img src="public/sampleScreens/propertyDetailsDemo.gif"height="auto" width="400" />
 </div>
 
 # Getting Started with Create React App
