@@ -6,7 +6,7 @@
 
 # Homestead Website
 
-A real estate website that searches for properties that are for sale or for rent. This site includes a homepage, navbar, searchpage with a filter and a property detail page with a image carousel.
+A real estate website that searches for properties that are for sale or for rent. This site includes a homepage, navbar, searchpage with a filter and a property detail page with a image carousel. This project implements the use of typescript with react framework and the material UI component library.
 The data used is from the Bayut api from rapidapi (https://rapidapi.com/apidojo/api/bayut)
 built using [React](https://reactjs.org). 
 
