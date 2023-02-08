@@ -8,6 +8,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import { PropertyImage, PropertyImageContainer } from "./styles";
 
+//Image Carousel for the property details page
 type CarouselItems = {
   photos: { title: string | null; url: string }[];
 };

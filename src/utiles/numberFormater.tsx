@@ -1,3 +1,5 @@
+// number formater for currency and area maximum numbber to 4 digits
+
 export const numberFormat = (value: number) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",

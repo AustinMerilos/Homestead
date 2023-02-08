@@ -23,6 +23,8 @@ import {
   Verified,
 } from "./styles";
 
+// Property Details page
+
 type PropertyType = {
   id: string;
 };
