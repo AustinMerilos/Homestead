@@ -5,6 +5,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import CircularProgress from "@material-ui/core/CircularProgress";
+
 export const Container = styled(Grid).attrs({
   container: true,
   direction: "column",
@@ -18,7 +19,6 @@ export const Container = styled(Grid).attrs({
        margin-top: 12vw;
   }
 `;
-
 export const Loader = styled(CircularProgress).attrs({ size: 250 })`
   && {
     margin: 250px;
@@ -33,7 +33,6 @@ export const Loader = styled(CircularProgress).attrs({ size: 250 })`
   }
   }
 `;
-
 export const PropertyImageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,7 +42,6 @@ export const PropertyImageContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
 `;
-
 export const PropertyImage = styled.img`
   margin: 1vw;
   border-radius: 4px;
@@ -93,8 +91,6 @@ export const Description = styled.div`
       font-size: 15px;
   }
 `;
-
-
 export const IconText = styled.div`
   margin: 0 30px 0 10px;
   font-size: 20px;
