@@ -37,7 +37,10 @@ export default function PropertySection({
   return (
     <PropertySectionContainer>
       <Link to={link}>
-        <PropertySectionImage src={image}></PropertySectionImage>
+        <PropertySectionImage
+          src={image}
+          alt="property image"
+        ></PropertySectionImage>
       </Link>
       <PropertySectionTitle>
         {(title?.length ?? 0) > 30 ? `${title?.substring(0, 30)}...` : title}

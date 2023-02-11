@@ -32,7 +32,7 @@ function NavBar() {
       <Navbar>
         <NavToolBar>
           <Link href="/">
-            <Logo src={images.houseLogo}></Logo>
+            <Logo src={images.houseLogo} alt="image of homestead logo"></Logo>
           </Link>
 
           <IconButton onClick={() => setIsMenuOpen((open) => !open)}>

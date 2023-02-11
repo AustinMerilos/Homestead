@@ -107,7 +107,7 @@ function Search() {
           </InnerContainer>
           {propertyArray.length === 0 && (
             <NoResultsContainer>
-              <NoResults src={images.noresults}></NoResults>
+              <NoResults src={images.noresults} alt="no results"></NoResults>
               <NoResultsTitle> No Results Found</NoResultsTitle>
             </NoResultsContainer>
           )}

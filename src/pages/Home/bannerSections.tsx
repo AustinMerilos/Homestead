@@ -28,7 +28,7 @@ export default function BannerSections({
     <>
       <Container>
         <BannerContainer>
-          <Banner src={image}></Banner>
+          <Banner src={image} alt="house image"></Banner>
           <BannerContainerContent>
             <BannerTitle>{title}</BannerTitle>
             <BannerDescription>{description}</BannerDescription>
