@@ -14,7 +14,7 @@ export const Container = styled(Grid).attrs({
   padding: 60px 120px 10px;
   margin-top: 2vw;
   margin-bottom: 10vw;
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       padding: 50px 20px 10px;
        margin-top: 12vw;
   }
@@ -24,8 +24,9 @@ export const Loader = styled(CircularProgress).attrs({ size: 250 })`
     margin: 250px;
     align-self: center;
     color: teal;
+    
 
-    @media (max-width: 390px) {
+    @media (max-width: 576px) {
     && {
       size: 25;
       margin: 25px;
@@ -71,7 +72,7 @@ export const TextHeaders = styled.div`
   font-size: 25px;
   font-weight: bold;
   text-transform: capitalize;
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       font-size: 15px;
   }
 `;
@@ -79,7 +80,7 @@ export const Title = styled.div`
   align-self: center;
   font-size: 35px;
 
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       font-size: 15px;
   }
 `;
@@ -87,7 +88,7 @@ export const Description = styled.div`
   font-size: 25px;
   padding: 40px 40px;
 
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       font-size: 15px;
   }
 `;
@@ -96,7 +97,7 @@ export const IconText = styled.div`
   font-size: 20px;
   font-weight: bold;
 
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       font-size: 20px;
   }
 `;
@@ -144,7 +145,7 @@ export const AmenitiesTitle = styled.div`
  font-size: 25px;
  font-weight: bold;
 
-  @media (max-width: 390px) {
+  @media (max-width: 576px) {
       font-size: 15px;
   }
 `;
@@ -154,7 +155,7 @@ background: teal;
 padding: 20px;
 border-radius: 10px;
 
- @media (max-width: 390px) {
+ @media (max-width: 576px) {
       padding: 5px;
   }
 `;

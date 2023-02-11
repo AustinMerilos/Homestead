@@ -1,4 +1,3 @@
-import { OtherHouses } from "@mui/icons-material";
 import React, { useMemo } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

@@ -18,7 +18,7 @@ export const HeaderContainer = styled.div`
   background-size: cover;
   margin: 1vw 0 4vw;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     height: 30vw;
   }
 `;
@@ -31,8 +31,8 @@ export const Container = styled(Grid).attrs({
   max-width: 1230px;
   margin: 0 auto;
   
-  @media (max-width: 600px) {
-    max-width: 90%;
+  @media (max-width: 576px) {
+    
   }
 `;
 
@@ -43,7 +43,7 @@ export const BannerContainer = styled.div`
   border-radius: 18px;
   overflow: hidden;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     max-height: 180px;
   }
 `
@@ -57,7 +57,7 @@ export const BannerContainerContent = styled.div`
   align-items: flex-start;
   box-sizing: border-box;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     padding: 1vw 1vw;
   }
 `
@@ -67,7 +67,7 @@ export const BannerDescription = styled.p`
   font-size: 1.6vw;
   line-height: 160%;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     font-size: 2.2vw;
   }
 `
@@ -77,7 +77,7 @@ export const BannerTitle = styled.div`
   font-weight: 700;
   font-size: 2.5vw;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     font-size: 1.9vw;
   }
 `
@@ -86,7 +86,7 @@ export const Banner = styled.img`
   display: flex;
   width: 50%;
   
-  @media (max-width: 600px) {
+  @media (max-width: 576px) {
     width: 80%;
   }
 `
@@ -100,7 +100,7 @@ export const BannerButton = styled.button`
   cursor: pointer;
   margin-bottom: 1.2vw;
 
-  @media (max-width: 767px) {
+  @media (max-width: 576px) {
     font-size: 8px;
   }
 `;
@@ -115,7 +115,7 @@ export const PropertySectionContainer = styled.div`
   width: 50%;
   box-sizing: border-box;
 
-  @media (max-width: 767px) {
+  @media (max-width: 576px) {
     width: 100%;
   }
 `;
@@ -124,7 +124,7 @@ export const PropertySectionInnerContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 767px) {
+  @media (max-width: 576px) {
     flex-direction: column;
   }
 `;
@@ -161,7 +161,7 @@ export const PropertySectionTitle = styled(Typography).attrs({
   font-size: 2.5vw;
 
  && {
-   @media (max-width: 767px) {
+   @media (max-width: 576px) {
     font-size: 15px;
   }
 }
@@ -171,7 +171,7 @@ export const PropertySectionText = styled.div`
   margin: 12px 20px;
   font-size: 20px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 576px) {
     font-size: 16px;
   }
 `;
@@ -194,7 +194,7 @@ export const PropertySectionImage = styled.img`
   height: 20vw;
   object-fit: cover;
 
-  @media (max-width: 767px) {
+  @media (max-width: 576px) {
     width: 100%;
     height: 40vw;
     margin: 20px 0;
