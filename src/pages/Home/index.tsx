@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import images from "../../assets";
 import { bayutUrl, fetchApi } from "../../utiles/fetchApi";
 import BannerSections from "./bannerSections";
