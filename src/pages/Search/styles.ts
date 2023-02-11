@@ -80,4 +80,9 @@ export const NoResults= styled.img`
    
 
 `
+
+export const PaginationContainer= styled.div`
+  display: flex;
+  place-content: space-evenly;
+`
 ;

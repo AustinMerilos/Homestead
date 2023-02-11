@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Container,
   Title,
@@ -15,6 +15,7 @@ import SearchFilters from "../../components/searchFilters";
 import { bayutUrl, fetchApi } from "../../utiles/fetchApi";
 import { useSearchParams } from "react-router-dom";
 import images from "../../assets";
+import SearchPagination from "./pagination";
 
 type PropertyType = {
   title?: string;
@@ -28,6 +29,7 @@ type PropertyType = {
 
 function Search() {
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const [searchFilters, setSearchFilters] = useState(false);
   const [propertyArray, setPropertyArray] = useState([]);
   const [searchParams] = useSearchParams();
@@ -48,7 +50,7 @@ function Search() {
 
   const getResults = useCallback(async () => {
     const results = await fetchApi(
-      `${bayutUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=24&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
+      `${bayutUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=10&page=${page}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${priceMin}&priceMax=${priceMax}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}&furnishingStatus=${furnishingStatus}`
     );
     const searchData = results.hits;
     setLoading(true);
@@ -59,6 +61,7 @@ function Search() {
     categoryExternalID,
     furnishingStatus,
     locationExternalIDs,
+    page,
     priceMax,
     priceMin,
     purpose,
@@ -111,6 +114,7 @@ function Search() {
               <NoResultsTitle> No Results Found</NoResultsTitle>
             </NoResultsContainer>
           )}
+          <SearchPagination setPage={setPage} page={page} />
         </>
       )}
     </>
