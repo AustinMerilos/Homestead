@@ -29,7 +29,7 @@ type PropertyType = {
 
 function Search() {
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [searchFilters, setSearchFilters] = useState(false);
   const [propertyArray, setPropertyArray] = useState([]);
   const [searchParams] = useSearchParams();
