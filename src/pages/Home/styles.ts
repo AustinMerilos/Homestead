@@ -1,54 +1,53 @@
-import { Typography, Grid } from '@material-ui/core';
-import styled from 'styled-components';
+import { Typography, Grid } from "@material-ui/core";
 import images from "../../assets";
 import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
+import styled, { keyframes } from "styled-components";
 
-export const HeaderContainer = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 20vw;
   justify-content: flex-start;
   align-items: flex-start;
   justify-content: space-around;
-  background:url(${images.banner});
+  background: url(${images.banner});
   background-position-y: bottom;
   background-position-x: unset;
   background-size: cover;
   margin: 1vw 0 4vw;
-  
+
   @media (max-width: 576px) {
     height: 30vw;
   }
 `;
 
-export const Container = styled(Grid).attrs({
+const Container = styled(Grid).attrs({
   container: true,
-  direction: 'column',
+  direction: "column",
 })<{ $fullWidth?: boolean }>`
   padding: 0 0 4vw 0;
   max-width: 1230px;
   margin: 0 auto;
-  
+
   @media (max-width: 576px) {
-    
   }
 `;
 
-export const BannerContainer = styled.div`
+const BannerContainer = styled.div`
   display: flex;
   flex-direction: row;
   max-height: 380px;
   border-radius: 18px;
   overflow: hidden;
-  
+
   @media (max-width: 576px) {
     max-height: 180px;
   }
-`
+`;
 
-export const BannerContainerContent = styled.div`
+const BannerContainerContent = styled.div`
   background-color: gray;
   display: flex;
   flex-direction: column;
@@ -56,41 +55,41 @@ export const BannerContainerContent = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
-  
+
   @media (max-width: 576px) {
     padding: 1vw 1vw;
   }
-`
+`;
 
-export const BannerDescription = styled.p`
+const BannerDescription = styled.p`
   color: white;
   font-size: 1.6vw;
   line-height: 160%;
-  
+
   @media (max-width: 576px) {
     font-size: 2.2vw;
   }
-`
+`;
 
-export const BannerTitle = styled.div`
+const BannerTitle = styled.div`
   color: white;
   font-weight: 700;
   font-size: 2.5vw;
-  
+
   @media (max-width: 576px) {
     font-size: 1.9vw;
   }
-`
+`;
 
-export const Banner = styled.img`
+const Banner = styled.img`
   display: flex;
   width: 50%;
-  
+
   @media (max-width: 576px) {
     width: 80%;
   }
-`
-export const BannerButton = styled.button`
+`;
+const BannerButton = styled.button`
   background-color: teal;
   padding: 0 1vw 0 1vw;
   color: white;
@@ -105,7 +104,7 @@ export const BannerButton = styled.button`
   }
 `;
 
-export const PropertySectionContainer = styled.div`
+const PropertySectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 3vw 4vw;
@@ -120,7 +119,7 @@ export const PropertySectionContainer = styled.div`
   }
 `;
 
-export const PropertySectionInnerContainer = styled.div`
+const PropertySectionInnerContainer = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -129,23 +128,7 @@ export const PropertySectionInnerContainer = styled.div`
   }
 `;
 
-export const Bed = styled(BedIcon)`
-  && {
-    color: teal;
-    height: 25spx;
-    width: 25px;
-  }
-`;
-
-export const Area = styled(SquareFootIcon)`
-  && {
-    color: teal;
-    height: 25spx;
-    width: 25px;
-  }
-`;
-
-export const Bath = styled(BathtubIcon)`
+const Bed = styled(BedIcon)`
   && {
     color: teal;
     height: 25px;
@@ -153,21 +136,37 @@ export const Bath = styled(BathtubIcon)`
   }
 `;
 
-export const PropertySectionTitle = styled(Typography).attrs({
-  variant: 'h6',
+const Area = styled(SquareFootIcon)`
+  && {
+    color: teal;
+    height: 25px;
+    width: 25px;
+  }
+`;
+
+const Bath = styled(BathtubIcon)`
+  && {
+    color: teal;
+    height: 25px;
+    width: 25px;
+  }
+`;
+
+const PropertySectionTitle = styled(Typography).attrs({
+  variant: "h6",
 })`
   color: black;
   font-weight: 700;
   font-size: 2.5vw;
 
- && {
-   @media (max-width: 576px) {
-    font-size: 15px;
+  && {
+    @media (max-width: 576px) {
+      font-size: 15px;
+    }
   }
-}
 `;
 
-export const PropertySectionText = styled.div`
+const PropertySectionText = styled.div`
   margin: 12px 20px;
   font-size: 20px;
 
@@ -176,7 +175,7 @@ export const PropertySectionText = styled.div`
   }
 `;
 
-export const PropertySectionIconContainer = styled.div`
+const PropertySectionIconContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -184,15 +183,46 @@ export const PropertySectionIconContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export const PropertySectionImage = styled.img`
-  margin: 1vw;
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 25vw;
+  height: 20vw; /* Match the image’s sizing */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f7;
+  overflow: hidden;
   border-radius: 4px;
-  border-style: solid;
-  border-color: teal;
-  float: left;
+  border: 1px solid teal;
+
+  @media (max-width: 576px) {
+    width: 100%;
+    height: 40vw;
+  }
+`;
+
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+const Spinner = styled.div`
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: ${spin} 1s linear infinite;
+  z-index: 1; /* stays above image */
+  position: relative;
+`;
+
+const PropertySectionImage = styled.img`
   width: 25vw;
   height: 20vw;
   object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid teal;
 
   @media (max-width: 576px) {
     width: 100%;
@@ -200,3 +230,24 @@ export const PropertySectionImage = styled.img`
     margin: 20px 0;
   }
 `;
+export {
+  Bath,
+  Area,
+  Bed,
+  HeaderContainer,
+  Container,
+  Banner,
+  BannerTitle,
+  BannerButton,
+  BannerContainer,
+  BannerContainerContent,
+  BannerDescription,
+  Spinner,
+  PropertySectionContainer,
+  PropertySectionIconContainer,
+  PropertySectionImage,
+  PropertySectionInnerContainer,
+  PropertySectionText,
+  PropertySectionTitle,
+  ImageWrapper,
+};

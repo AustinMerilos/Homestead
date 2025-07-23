@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { numberFormat, areaFormat } from "../../utiles/numberFormater";
 import {
@@ -10,6 +10,8 @@ import {
   PropertySectionImage,
   PropertySectionText,
   PropertySectionTitle,
+  Spinner,
+  ImageWrapper,
 } from "./styles";
 
 type BannerSectionItems = {
@@ -31,28 +33,41 @@ export default function PropertySection({
   link,
   area,
 }: BannerSectionItems) {
-  const formater = useMemo(() => numberFormat(price), [price]);
-  const areaformater = useMemo(() => areaFormat(area), [area]);
+  const [loading, setLoading] = useState(true);
+
+  const formattedPrice = useMemo(() => numberFormat(price), [price]);
+  const formattedArea = useMemo(() => areaFormat(area), [area]);
 
   return (
     <PropertySectionContainer>
       <Link to={link}>
-        <PropertySectionImage
-          src={image}
-          alt="property image"
-        ></PropertySectionImage>
+        <ImageWrapper>
+          {loading && <Spinner />}
+          <PropertySectionImage
+            src={image}
+            alt="property image"
+            onLoad={() => setLoading(false)}
+            style={{ display: loading ? "none" : "block" }}
+          />
+        </ImageWrapper>
       </Link>
+
       <PropertySectionTitle>
         {(title?.length ?? 0) > 30 ? `${title?.substring(0, 30)}...` : title}
       </PropertySectionTitle>
-      <PropertySectionText>PRICE: {formater}</PropertySectionText>
+
+      {/* Show "Loading..." until the image is loaded */}
+      <PropertySectionText>
+        PRICE: {loading ? "Loading..." : formattedPrice}
+      </PropertySectionText>
+
       <PropertySectionIconContainer>
         <Bed />
         <PropertySectionText>{rooms}</PropertySectionText>
         <Bath />
         <PropertySectionText>{baths}</PropertySectionText>
         <Area />
-        <PropertySectionText>{areaformater} sqft</PropertySectionText>
+        <PropertySectionText>{formattedArea} sqft</PropertySectionText>
       </PropertySectionIconContainer>
     </PropertySectionContainer>
   );
