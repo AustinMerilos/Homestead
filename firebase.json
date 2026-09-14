@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "homestead-f2c3a",
     "public": "build",
     "ignore": [
       "firebase.json",
