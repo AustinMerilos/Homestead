@@ -1,7 +1,14 @@
 import { Button, Grid, Typography } from "@material-ui/core";
-import CircularProgress from "@mui/material/CircularProgress";
 import styled from "styled-components";
-import { colors, font, gradients, radius, shadow, transition } from "../../theme";
+import {
+  colors,
+  fadeIn,
+  font,
+  gradients,
+  radius,
+  shadow,
+  transition,
+} from "../../theme";
 
 export const Container = styled(Grid).attrs({
   container: true,
@@ -19,18 +26,8 @@ export const Container = styled(Grid).attrs({
     margin-top: 0;
   }
 `;
-export const Loader = styled(CircularProgress).attrs({ size: 250 })`
-  && {
-    display: block;
-    margin: 200px auto;
-    color: ${colors.teal};
-  }
-
-  && {
-    @media (max-width: 576px) {
-      margin: 80px auto;
-    }
-  }
+export const ResultsFadeIn = styled.div`
+  animation: ${fadeIn} 0.4s ease;
 `;
 export const InnerContainer = styled.div`
   display: grid;

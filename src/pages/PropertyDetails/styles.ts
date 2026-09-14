@@ -4,7 +4,6 @@ import BedIcon from "@mui/icons-material/Bed";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { revealStyle } from "../../components/reveal";
 import { colors, fadeIn, font, gradients, pulse, radius, shadow, transition } from "../../theme";
 
@@ -21,19 +20,12 @@ export const Container = styled(Grid).attrs({
     margin-top: 12vw;
   }
 `;
-export const Loader = styled(CircularProgress).attrs({ size: 250 })`
-  && {
-    margin: 250px;
-    align-self: center;
-    color: ${colors.teal};
-
-    @media (max-width: 576px) {
-      && {
-        size: 25;
-        margin: 25px;
-      }
-    }
-  }
+export const ContentFadeIn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: ${fadeIn} 0.4s ease;
 `;
 export const PropertyImageContainer = styled.div`
   display: flex;
