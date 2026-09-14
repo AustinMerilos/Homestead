@@ -96,7 +96,7 @@ export const IconContainer = styled(Grid).attrs({
 })`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 24px;
   ${revealStyle}
 `;
 export const TextContainer = styled(Grid).attrs({
@@ -105,7 +105,7 @@ export const TextContainer = styled(Grid).attrs({
 })`
   display: flex;
   white-space: break-spaces;
-  margin-top: 20px;
+  margin-top: 24px;
   padding: 24px 28px;
   background: ${colors.tealTint};
   border-radius: ${radius.md};
@@ -139,13 +139,14 @@ export const Description = styled.div`
   font-size: 20px;
   line-height: 165%;
   color: ${colors.slate};
-  padding: 40px 40px;
+  margin-top: 24px;
+  padding: 8px 0 8px 28px;
   border-left: 4px solid ${colors.teal};
   ${revealStyle}
 
   @media (max-width: 576px) {
     font-size: 15px;
-    padding: 20px 16px;
+    padding: 4px 0 4px 16px;
   }
 `;
 export const IconText = styled.div`
@@ -194,7 +195,7 @@ export const AmenitiesContainer = styled(Grid).attrs({
 })`
   display: flex;
   white-space: break-spaces;
-  margin-top: 20px;
+  margin-top: 16px;
   justify-content: space-evenly;
   font-size: 20px;
   gap: 16px;
@@ -204,6 +205,7 @@ export const AmenitiesTitle = styled.div`
   font-size: 25px;
   font-weight: bold;
   color: ${colors.ink};
+  margin-top: 24px;
 
   @media (max-width: 576px) {
     font-size: 15px;
