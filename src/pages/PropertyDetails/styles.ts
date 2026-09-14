@@ -52,6 +52,41 @@ export const PropertyImage = styled.img`
   object-fit: cover;
 `;
 
+export const ThumbnailStrip = styled.div`
+  display: flex;
+  gap: 8px;
+  width: 60%;
+  padding: 4px 0 8px;
+  margin-bottom: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  @media (max-width: 576px) {
+    width: 90%;
+  }
+`;
+
+export const Thumbnail = styled.img<{ $active: boolean }>`
+  width: 72px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid ${({ $active }) => ($active ? "teal" : "transparent")};
+  opacity: ${({ $active }) => ($active ? 1 : 0.6)};
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 576px) {
+    width: 52px;
+    height: 38px;
+  }
+`;
+
 export const IconContainer = styled(Grid).attrs({
   container: true,
   direction: "row",
