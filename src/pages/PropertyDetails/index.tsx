@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { areaFormat, numberFormat } from "../../utiles/numberFormater";
+import { useReveal } from "../../components/reveal";
 import Carousel from "./carousel";
 import {
   AmenitiesContainer,
@@ -46,6 +47,10 @@ export default function PropertyDetails() {
   const [furnishingStatus, setFurnishingStatus] = useState();
   const formater = useMemo(() => numberFormat(Number(price)), [price]);
   const areaFormater = useMemo(() => areaFormat(Number(area)), [area]);
+  const iconsReveal = useReveal<HTMLDivElement>(0);
+  const priceReveal = useReveal<HTMLDivElement>(80);
+  const descriptionReveal = useReveal<HTMLDivElement>(160);
+  const amenitiesReveal = useReveal<HTMLDivElement>(240);
 
   const getResults = useCallback(async () => {
     const results = await fetchApi(
@@ -91,7 +96,7 @@ export default function PropertyDetails() {
           <Title>{title} </Title>
           <Carousel photos={photos}></Carousel>
 
-          <IconContainer>
+          <IconContainer {...iconsReveal}>
             {isVerified && <Verified />}
             <Bed />
             <IconText>{rooms}</IconText>
@@ -100,20 +105,18 @@ export default function PropertyDetails() {
             <Area />
             <IconText>{areaFormater} sqft</IconText>
           </IconContainer>
-          <IconContainer>
-            <TextContainer>
-              <TextHeaders>Price: {formater} </TextHeaders>
-              {rentFrequency && <TextHeaders>{rentFrequency}</TextHeaders>}
-              <TextHeaders>Property Type: {propertyType}</TextHeaders>
-              <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
-            </TextContainer>
-          </IconContainer>
+          <TextContainer {...priceReveal}>
+            <TextHeaders>Price: {formater} </TextHeaders>
+            {rentFrequency && <TextHeaders>{rentFrequency}</TextHeaders>}
+            <TextHeaders>Property Type: {propertyType}</TextHeaders>
+            <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
+          </TextContainer>
 
-          <Description>{description}</Description>
+          <Description {...descriptionReveal}>{description}</Description>
           {amenities.length > 0 && (
             <>
               <AmenitiesTitle>Amenities:</AmenitiesTitle>
-              <AmenitiesContainer>
+              <AmenitiesContainer {...amenitiesReveal}>
                 {amenities.map((amenity, index) => (
                   <Amenitiesitem key={index}>{amenity}</Amenitiesitem>
                 ))}

@@ -77,7 +77,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ purpose = "" }) => {
               MenuProps={MenuProps}
             >
               {items.map(({ value, name }) => (
-                <MenuItem value={value}>
+                <MenuItem key={value} value={value}>
                   <ListItemText primary={name} />
                 </MenuItem>
               ))}
