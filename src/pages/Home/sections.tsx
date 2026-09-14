@@ -33,7 +33,7 @@ export default function PropertySection({
   link,
   area,
 }: BannerSectionItems) {
-  const [loading, setLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(true);
 
   const formattedPrice = useMemo(() => numberFormat(price), [price]);
   const formattedArea = useMemo(() => areaFormat(area), [area]);
@@ -42,12 +42,13 @@ export default function PropertySection({
     <PropertySectionContainer>
       <Link to={link}>
         <ImageWrapper>
-          {loading && <Spinner />}
+          {imageLoading && <Spinner />}
           <PropertySectionImage
             src={image}
             alt="property image"
-            onLoad={() => setLoading(false)}
-            style={{ display: loading ? "none" : "block" }}
+            onLoad={() => setImageLoading(false)}
+            onError={() => setImageLoading(false)}
+            style={{ display: imageLoading ? "none" : "block" }}
           />
         </ImageWrapper>
       </Link>
@@ -56,9 +57,8 @@ export default function PropertySection({
         {(title?.length ?? 0) > 30 ? `${title?.substring(0, 30)}...` : title}
       </PropertySectionTitle>
 
-      {/* Show "Loading..." until the image is loaded */}
       <PropertySectionText>
-        PRICE: {loading ? "Loading..." : formattedPrice}
+        PRICE: {Number.isFinite(price) ? formattedPrice : "Loading..."}
       </PropertySectionText>
 
       <PropertySectionIconContainer>
