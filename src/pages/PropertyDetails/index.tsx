@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { bayutUrl, fetchApi } from "../../utiles/fetchApi";
+import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { areaFormat, numberFormat } from "../../utiles/numberFormater";
 import Carousel from "./carousel";
 import {
@@ -39,35 +39,34 @@ export default function PropertyDetails() {
   const [price, setPrice] = useState();
   const [description, setDescription] = useState();
   const [rentFrequency, setRentFrequency] = useState();
-  const [photos, setPhotos] = useState([{ title: "", url: "" }]);
-  const [amenities, setAmenities] = useState([]);
-  const [verification, setVerification] = useState();
-  const [purpose, setPurpose] = useState();
+  const [photos, setPhotos] = useState([{ title: null as string | null, url: "" }]);
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [isVerified, setIsVerified] = useState(false);
+  const [dealType, setDealType] = useState();
   const [furnishingStatus, setFurnishingStatus] = useState();
   const formater = useMemo(() => numberFormat(Number(price)), [price]);
   const areaFormater = useMemo(() => areaFormat(Number(area)), [area]);
 
   const getResults = useCallback(async () => {
     const results = await fetchApi(
-      `${bayutUrl}/properties/detail?externalID=${id}`
+      `${propertyFinderUrl}/details/byid?id=${id}`
     );
-    const searchData = results;
-    const amenitiesText = searchData.amenities.map(
-      (amenity: { text: string }) => amenity.text
-    );
+    const searchData = results.detail;
 
-    setAmenities(amenitiesText);
+    setAmenities(searchData.amenities ?? []);
     setTitle(searchData.title);
-    setRooms(searchData.rooms);
+    setRooms(searchData.bedrooms);
     setPrice(searchData.price);
-    setBaths(searchData.baths);
-    setArea(searchData.area);
-    setPurpose(searchData.purpose);
-    setFurnishingStatus(searchData.furnishingStatus);
+    setBaths(searchData.bathrooms);
+    setArea(searchData.size);
+    setDealType(searchData.dealType);
+    setFurnishingStatus(searchData.additionalDetails?.Furnishings);
     setRentFrequency(searchData.rentFrequency);
     setDescription(searchData.description);
-    setPhotos(searchData.photos);
-    setVerification(searchData.verification.status);
+    setPhotos(
+      (searchData.images ?? []).map((url: string) => ({ title: null, url }))
+    );
+    setIsVerified(Boolean(searchData.isVerified));
     setLoading(false);
   }, [id]);
 
@@ -76,10 +75,10 @@ export default function PropertyDetails() {
   }, [getResults]);
 
   let propertyType = "";
-  if (purpose === "for-rent") {
+  if (dealType === "For_Rent") {
     propertyType = " Renting";
   }
-  if (purpose === "for-sale") {
+  if (dealType === "For_Sale") {
     propertyType = "Selling";
   }
 
@@ -90,15 +89,10 @@ export default function PropertyDetails() {
       ) : (
         <>
           <Title>{title} </Title>
-          <Carousel
-            photos={photos.map((property) => ({
-              title: property.title,
-              url: property.url,
-            }))}
-          ></Carousel>
+          <Carousel photos={photos}></Carousel>
 
           <IconContainer>
-            {verification === "verified" && <Verified />}
+            {isVerified && <Verified />}
             <Bed />
             <IconText>{rooms}</IconText>
             <Bath />

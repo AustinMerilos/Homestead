@@ -6,15 +6,13 @@ interface FilterItems {
 
 type FilterValues = {
   purpose: string;
-  rentFrequency: string;
-  categoryExternalID: string;
+  propertyType: string;
   priceMin: string;
   priceMax: string;
   areaMax: string;
-  roomsMin: string;
-  bathsMin: string;
-  sort: string;
-  furnishingStatus: string;
+  bedrooms: string;
+  bathrooms: string;
+  furnishing: string;
 };
 
 export const filterData: FilterItems[] = [
@@ -25,16 +23,6 @@ export const filterData: FilterItems[] = [
     ],
     placeholder: "Purpose",
     queryName: "purpose",
-  },
-  {
-    items: [
-      { name: "Daily", value: "daily" },
-      { name: "Weekly", value: "weekly" },
-      { name: "Monthly", value: "monthly" },
-      { name: "Yearly", value: "yearly" },
-    ],
-    placeholder: "Rent Frequency",
-    queryName: "rentFrequency",
   },
   {
     items: [
@@ -73,18 +61,6 @@ export const filterData: FilterItems[] = [
   },
   {
     items: [
-      { name: "Lowest Price", value: "price-asc" },
-      { name: "Highest Price", value: "price-des" },
-      { name: "Newest", value: "date-asc" },
-      { name: "Oldest", value: "date-desc" },
-      { name: "Verified", value: "verified-score" },
-      { name: "City Level Score", value: "city-level-score" },
-    ],
-    placeholder: "Sort",
-    queryName: "sort",
-  },
-  {
-    items: [
       { name: "1000", value: "1000" },
       { name: "2000", value: "2000" },
       { name: "3000", value: "3000" },
@@ -98,19 +74,17 @@ export const filterData: FilterItems[] = [
   },
   {
     items: [
+      { name: "Studio", value: "0" },
       { name: "1", value: "1" },
       { name: "2", value: "2" },
       { name: "3", value: "3" },
       { name: "4", value: "4" },
       { name: "5", value: "5" },
       { name: "6", value: "6" },
-      { name: "7", value: "7" },
-      { name: "8", value: "8" },
-      { name: "9", value: "9" },
-      { name: "10", value: "10" },
+      { name: "7+", value: "8" },
     ],
-    placeholder: "Rooms",
-    queryName: "roomsMin",
+    placeholder: "Bedrooms",
+    queryName: "bedrooms",
   },
   {
     items: [
@@ -125,31 +99,31 @@ export const filterData: FilterItems[] = [
       { name: "9", value: "9" },
       { name: "10", value: "10" },
     ],
-    placeholder: "Baths",
-    queryName: "bathsMin",
+    placeholder: "Bathrooms",
+    queryName: "bathrooms",
   },
   {
     items: [
-      { name: "Furnished", value: "furnished" },
-      { name: "Unfurnished", value: "unfurnished" },
+      { name: "Furnished", value: "Furnished" },
+      { name: "Unfurnished", value: "Unfurnished" },
     ],
     placeholder: "Furnish Type",
-    queryName: "furnishingStatus",
+    queryName: "furnishing",
   },
   {
     items: [
-      { name: "Apartment", value: "4" },
-      { name: "Townhouses", value: "16" },
-      { name: "Villas", value: "3" },
-      { name: "Penthouses", value: "18" },
-      { name: "Hotel Apartments", value: "21" },
-      { name: "Villa Compound", value: "19" },
-      { name: "Residential Plot", value: "14" },
-      { name: "Residential Floor", value: "12" },
-      { name: "Residential Building", value: "17" },
+      { name: "Apartment", value: "Apartment" },
+      { name: "Townhouse", value: "Townhouse" },
+      { name: "Villa", value: "Villa" },
+      { name: "Penthouse", value: "Penthouse" },
+      { name: "Duplex", value: "Duplex" },
+      { name: "Compound", value: "Compound" },
+      { name: "Hotel Apartment", value: "Hotel Apartment" },
+      { name: "Bungalow", value: "Bungalow" },
+      { name: "Land", value: "Land" },
     ],
     placeholder: "Property Type",
-    queryName: "categoryExternalID",
+    queryName: "propertyType",
   },
 ];
 
@@ -158,74 +132,27 @@ type Values = {
   value: string;
 };
 
-export const getFilterValues = (filterValues: {
-  purpose: string;
-  rentFrequency: string;
-  categoryExternalID: string;
-  priceMin: string;
-  priceMax: string;
-  areaMax: string;
-  roomsMin: string;
-  bathsMin: string;
-  sort: string;
-  furnishingStatus: string;
-}) => {
+export const getFilterValues = (filterValues: FilterValues) => {
   const {
     purpose,
-    rentFrequency,
-    categoryExternalID,
+    propertyType,
     priceMin,
     priceMax,
     areaMax,
-    roomsMin,
-    bathsMin,
-    sort,
-
-    furnishingStatus,
+    bedrooms,
+    bathrooms,
+    furnishing,
   } = filterValues;
 
   const values: Values[] = [
-    {
-      name: "purpose",
-      value: purpose,
-    },
-    {
-      name: "rentFrequency",
-      value: rentFrequency,
-    },
-    {
-      name: "priceMin",
-      value: priceMin,
-    },
-    {
-      name: "priceMax",
-      value: priceMax,
-    },
-    {
-      name: "areaMax",
-      value: areaMax,
-    },
-    {
-      name: "roomsMin",
-      value: roomsMin,
-    },
-    {
-      name: "bathsMin",
-      value: bathsMin,
-    },
-    {
-      name: "sort",
-      value: sort,
-    },
-
-    {
-      name: "categoryExternalID",
-      value: categoryExternalID,
-    },
-    {
-      name: "furnishingStatus",
-      value: furnishingStatus,
-    },
+    { name: "purpose", value: purpose },
+    { name: "priceMin", value: priceMin },
+    { name: "priceMax", value: priceMax },
+    { name: "areaMax", value: areaMax },
+    { name: "bedrooms", value: bedrooms },
+    { name: "bathrooms", value: bathrooms },
+    { name: "propertyType", value: propertyType },
+    { name: "furnishing", value: furnishing },
   ];
 
   return values;
