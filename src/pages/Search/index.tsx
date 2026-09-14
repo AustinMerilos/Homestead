@@ -7,7 +7,7 @@ import {
   NoResults,
   NoResultsContainer,
   NoResultsTitle,
-  Loader,
+  ResultsFadeIn,
 } from "./styles";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PropertySection from "../Home/sections";
@@ -16,6 +16,7 @@ import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { useSearchParams } from "react-router-dom";
 import images from "../../assets";
 import SearchPagination from "./pagination";
+import SearchSkeleton from "./skeleton";
 
 type PropertyType = {
   title?: string;
@@ -98,9 +99,9 @@ function Search() {
         )}
       </Container>
       {loading === false ? (
-        <Loader />
+        <SearchSkeleton />
       ) : (
-        <>
+        <ResultsFadeIn>
           <InnerContainer>
             {propertyArray.map((property, index) => (
               <PropertySection
@@ -123,7 +124,7 @@ function Search() {
             </NoResultsContainer>
           )}
           <SearchPagination setPage={setPage} page={page} />
-        </>
+        </ResultsFadeIn>
       )}
     </>
   );

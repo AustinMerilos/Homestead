@@ -5,6 +5,7 @@ import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { areaFormat, numberFormat } from "../../utiles/numberFormater";
 import { useReveal } from "../../components/reveal";
 import Carousel from "./carousel";
+import DetailsSkeleton from "./skeleton";
 import {
   AmenitiesContainer,
   Amenitiesitem,
@@ -13,10 +14,10 @@ import {
   Bath,
   Bed,
   Container,
+  ContentFadeIn,
   Description,
   IconContainer,
   IconText,
-  Loader,
   TextContainer,
   TextHeaders,
   Title,
@@ -44,6 +45,7 @@ export default function PropertyDetails() {
   const [amenities, setAmenities] = useState<string[]>([]);
   const [isVerified, setIsVerified] = useState(false);
   const [dealType, setDealType] = useState();
+  const [propertyCategory, setPropertyCategory] = useState();
   const [furnishingStatus, setFurnishingStatus] = useState();
   const formater = useMemo(() => numberFormat(Number(price)), [price]);
   const areaFormater = useMemo(() => areaFormat(Number(area)), [area]);
@@ -65,6 +67,7 @@ export default function PropertyDetails() {
     setBaths(searchData.bathrooms);
     setArea(searchData.size);
     setDealType(searchData.dealType);
+    setPropertyCategory(searchData.propertyType);
     setFurnishingStatus(searchData.additionalDetails?.Furnishings);
     setRentFrequency(searchData.rentFrequency);
     setDescription(searchData.description);
@@ -79,20 +82,20 @@ export default function PropertyDetails() {
     getResults();
   }, [getResults]);
 
-  let propertyType = "";
+  let listingType = "";
   if (dealType === "For_Rent") {
-    propertyType = " Renting";
+    listingType = rentFrequency ? `For Rent (${rentFrequency})` : "For Rent";
   }
   if (dealType === "For_Sale") {
-    propertyType = "Selling";
+    listingType = "For Sale";
   }
 
   return (
     <Container>
       {loading === true ? (
-        <Loader />
+        <DetailsSkeleton />
       ) : (
-        <>
+        <ContentFadeIn>
           <Title>{title} </Title>
           <Carousel photos={photos}></Carousel>
 
@@ -107,8 +110,8 @@ export default function PropertyDetails() {
           </IconContainer>
           <TextContainer {...priceReveal}>
             <TextHeaders>Price: {formater} </TextHeaders>
-            {rentFrequency && <TextHeaders>{rentFrequency}</TextHeaders>}
-            <TextHeaders>Property Type: {propertyType}</TextHeaders>
+            <TextHeaders>Listing: {listingType}</TextHeaders>
+            <TextHeaders>Property Type: {propertyCategory}</TextHeaders>
             <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
           </TextContainer>
 
@@ -123,7 +126,7 @@ export default function PropertyDetails() {
               </AmenitiesContainer>
             </>
           )}
-        </>
+        </ContentFadeIn>
       )}
     </Container>
   );

@@ -176,7 +176,7 @@ const PropertySectionInnerContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1278px;
-  margin: 0 auto;
+  margin: 0 auto 4vw;
   padding: 0 24px;
 
   @media (max-width: 900px) {
@@ -187,6 +187,7 @@ const PropertySectionInnerContainer = styled.div`
     grid-template-columns: 1fr;
     padding: 0 16px;
     gap: 16px;
+    margin: 0 auto 10vw;
   }
 `;
 

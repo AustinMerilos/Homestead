@@ -75,3 +75,8 @@ export const pulse = keyframes`
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.12); }
 `;
+
+export const shimmer = keyframes`
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+`;
