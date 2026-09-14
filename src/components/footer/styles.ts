@@ -2,9 +2,7 @@ import { Grid } from "@material-ui/core";
 import styled from "styled-components";
 
 
-export const Container = styled(Grid).attrs({
-  direction: 'row',
-})`
+export const Container = styled(Grid)`
   background-color: teal;
   padding: 1% 46% 1%;
   margin-top: 6vw;

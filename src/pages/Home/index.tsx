@@ -88,12 +88,13 @@ export default function Home() {
         link={constants.rentProperty.link}
       ></BannerSections>
       <PropertySectionInnerContainer>
-        {rentPropertyArray.map((array) => {
+        {rentPropertyArray.map((array, index) => {
           if (array.id === "") {
             urlString = "";
           }
           return (
             <PropertySection
+              key={array.id || index}
               title={array.title}
               baths={array.baths}
               rooms={array.rooms}
@@ -115,12 +116,13 @@ export default function Home() {
       ></BannerSections>
 
       <PropertySectionInnerContainer>
-        {salePropertyArray.map((array) => {
+        {salePropertyArray.map((array, index) => {
           if (array.id === "") {
             urlString = "";
           }
           return (
             <PropertySection
+              key={array.id || index}
               title={array.title}
               baths={array.baths}
               rooms={array.rooms}
