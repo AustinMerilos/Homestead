@@ -3,7 +3,17 @@ import images from "../../assets";
 import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { revealStyle } from "../../components/reveal";
+import {
+  colors,
+  font,
+  gradients,
+  radius,
+  shadow,
+  spin,
+  transition,
+} from "../../theme";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -12,7 +22,12 @@ const HeaderContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   justify-content: space-around;
-  background: url(${images.banner});
+  background: linear-gradient(
+      180deg,
+      rgba(11, 63, 63, 0.15) 0%,
+      rgba(11, 63, 63, 0) 40%
+    ),
+    url(${images.banner});
   background-position-y: bottom;
   background-position-x: unset;
   background-size: cover;
@@ -39,8 +54,15 @@ const BannerContainer = styled.div`
   display: flex;
   flex-direction: row;
   max-height: 380px;
-  border-radius: 18px;
+  border-radius: ${radius.lg};
   overflow: hidden;
+  box-shadow: ${shadow.card};
+  transition: ${transition.slow};
+
+  &:hover {
+    box-shadow: ${shadow.cardHover};
+    transform: translateY(-4px);
+  }
 
   @media (max-width: 576px) {
     max-height: 180px;
@@ -48,7 +70,7 @@ const BannerContainer = styled.div`
 `;
 
 const BannerContainerContent = styled.div`
-  background-color: gray;
+  background: ${gradients.hero};
   display: flex;
   flex-direction: column;
   padding: 2vw 3vw;
@@ -62,7 +84,7 @@ const BannerContainerContent = styled.div`
 `;
 
 const BannerDescription = styled.p`
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.6vw;
   line-height: 160%;
 
@@ -73,8 +95,10 @@ const BannerDescription = styled.p`
 
 const BannerTitle = styled.div`
   color: white;
-  font-weight: 700;
-  font-size: 2.5vw;
+  font-family: ${font.display};
+  font-weight: 600;
+  font-size: 2.6vw;
+  letter-spacing: -0.01em;
 
   @media (max-width: 576px) {
     font-size: 1.9vw;
@@ -84,39 +108,70 @@ const BannerTitle = styled.div`
 const Banner = styled.img`
   display: flex;
   width: 50%;
+  object-fit: cover;
 
   @media (max-width: 576px) {
     width: 80%;
   }
 `;
 const BannerButton = styled.button`
-  background-color: teal;
-  padding: 0 1vw 0 1vw;
+  background: ${gradients.button};
+  border: none;
+  padding: 0.6vw 1.4vw;
   color: white;
-  border-radius: 15px;
+  border-radius: ${radius.pill};
   font-size: 1.7vw;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
   margin-bottom: 1.2vw;
+  box-shadow: ${shadow.button};
+  transition: ${transition.base};
+
+  &:hover {
+    background: ${gradients.buttonHover};
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 26px rgba(11, 63, 63, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.99);
+  }
 
   @media (max-width: 576px) {
     font-size: 8px;
   }
 `;
 
-const PropertySectionContainer = styled.div`
+const PropertySectionContainer = styled.div<{
+  $visible?: boolean;
+  $delay?: number;
+}>`
   display: flex;
   flex-direction: column;
-  padding: 0 3vw 4vw;
+  padding: 1.5vw 1.5vw 2vw;
+  margin: 0 1.5vw 2vw;
   justify-content: flex-start;
   align-items: center;
   height: 100%;
   width: 50%;
   box-sizing: border-box;
+  background: ${colors.white};
+  border-radius: ${radius.lg};
+  box-shadow: ${shadow.card};
+  transition: ${transition.slow};
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: ${shadow.cardHover};
+  }
 
   @media (max-width: 576px) {
     width: 100%;
+    margin: 0 0 4vw;
   }
+
+  ${revealStyle}
 `;
 
 const PropertySectionInnerContainer = styled.div`
@@ -130,7 +185,7 @@ const PropertySectionInnerContainer = styled.div`
 
 const Bed = styled(BedIcon)`
   && {
-    color: teal;
+    color: ${colors.teal};
     height: 25px;
     width: 25px;
   }
@@ -138,7 +193,7 @@ const Bed = styled(BedIcon)`
 
 const Area = styled(SquareFootIcon)`
   && {
-    color: teal;
+    color: ${colors.teal};
     height: 25px;
     width: 25px;
   }
@@ -146,7 +201,7 @@ const Area = styled(SquareFootIcon)`
 
 const Bath = styled(BathtubIcon)`
   && {
-    color: teal;
+    color: ${colors.teal};
     height: 25px;
     width: 25px;
   }
@@ -155,13 +210,15 @@ const Bath = styled(BathtubIcon)`
 const PropertySectionTitle = styled(Typography).attrs({
   variant: "h6",
 })`
-  color: black;
-  font-weight: 700;
-  font-size: 2.5vw;
+  color: ${colors.ink};
+  font-family: ${font.display};
+  font-weight: 600;
+  font-size: 1.6vw;
+  margin-top: 0.6vw;
 
   && {
     @media (max-width: 576px) {
-      font-size: 15px;
+      font-size: 18px;
     }
   }
 `;
@@ -169,6 +226,8 @@ const PropertySectionTitle = styled(Typography).attrs({
 const PropertySectionText = styled.div`
   margin: 12px 20px;
   font-size: 20px;
+  color: ${colors.slate};
+  font-weight: 600;
 
   @media (max-width: 576px) {
     font-size: 16px;
@@ -190,10 +249,9 @@ const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f7f7f7;
+  background: ${colors.tealTint};
   overflow: hidden;
-  border-radius: 4px;
-  border: 1px solid teal;
+  border-radius: ${radius.md};
 
   @media (max-width: 576px) {
     width: 100%;
@@ -201,18 +259,13 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
-
 const Spinner = styled.div`
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border: 4px solid ${colors.tealTint};
+  border-top: 4px solid ${colors.teal};
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: ${spin} 1s linear infinite;
+  animation: ${spin} 0.9s linear infinite;
   z-index: 1; /* stays above image */
   position: relative;
 `;
@@ -221,8 +274,12 @@ const PropertySectionImage = styled.img`
   width: 25vw;
   height: 20vw;
   object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid teal;
+  border-radius: ${radius.md};
+  transition: ${transition.slow};
+
+  &:hover {
+    transform: scale(1.06);
+  }
 
   @media (max-width: 576px) {
     width: 100%;

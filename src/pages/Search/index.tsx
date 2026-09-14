@@ -102,9 +102,10 @@ function Search() {
       ) : (
         <>
           <InnerContainer>
-            {propertyArray.map((property) => (
+            {propertyArray.map((property, index) => (
               <PropertySection
                 key={property.id}
+                delay={index * 60}
                 image={property.images?.[0]}
                 title={property.title}
                 price={property.price}

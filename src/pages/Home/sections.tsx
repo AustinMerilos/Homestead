@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { numberFormat, areaFormat } from "../../utiles/numberFormater";
+import { useReveal } from "../../components/reveal";
 import {
   Area,
   Bath,
@@ -22,6 +23,7 @@ type BannerSectionItems = {
   baths?: string;
   area: number;
   link: string;
+  delay?: number;
 };
 
 export default function PropertySection({
@@ -32,14 +34,16 @@ export default function PropertySection({
   baths,
   link,
   area,
+  delay = 0,
 }: BannerSectionItems) {
   const [imageLoading, setImageLoading] = useState(true);
+  const reveal = useReveal<HTMLDivElement>(delay);
 
   const formattedPrice = useMemo(() => numberFormat(price), [price]);
   const formattedArea = useMemo(() => areaFormat(area), [area]);
 
   return (
-    <PropertySectionContainer>
+    <PropertySectionContainer {...reveal}>
       <Link to={link}>
         <ImageWrapper>
           {imageLoading && <Spinner />}

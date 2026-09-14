@@ -5,6 +5,8 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import SquareFootIcon from "@mui/icons-material/SquareFoot";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { revealStyle } from "../../components/reveal";
+import { colors, fadeIn, font, gradients, pulse, radius, shadow, transition } from "../../theme";
 
 export const Container = styled(Grid).attrs({
   container: true,
@@ -15,23 +17,22 @@ export const Container = styled(Grid).attrs({
   margin-top: 2vw;
   margin-bottom: 10vw;
   @media (max-width: 576px) {
-      padding: 50px 20px 10px;
-       margin-top: 12vw;
+    padding: 50px 20px 10px;
+    margin-top: 12vw;
   }
 `;
 export const Loader = styled(CircularProgress).attrs({ size: 250 })`
   && {
     margin: 250px;
     align-self: center;
-    color: teal;
-    
+    color: ${colors.teal};
 
     @media (max-width: 576px) {
-    && {
-      size: 25;
-      margin: 25px;
+      && {
+        size: 25;
+        margin: 25px;
+      }
     }
-  }
   }
 `;
 export const PropertyImageContainer = styled.div`
@@ -45,11 +46,11 @@ export const PropertyImageContainer = styled.div`
 `;
 export const PropertyImage = styled.img`
   margin: 1vw;
-  border-radius: 4px;
-  border-color: teal;
-  border-style: solid;
+  border-radius: ${radius.lg};
   width: 60%;
   object-fit: cover;
+  box-shadow: ${shadow.card};
+  animation: ${fadeIn} 0.4s ease;
 `;
 
 export const ThumbnailStrip = styled.div`
@@ -71,14 +72,16 @@ export const Thumbnail = styled.img<{ $active: boolean }>`
   height: 52px;
   flex-shrink: 0;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: ${radius.sm};
   cursor: pointer;
-  border: 2px solid ${({ $active }) => ($active ? "teal" : "transparent")};
-  opacity: ${({ $active }) => ($active ? 1 : 0.6)};
-  transition: opacity 0.15s ease, border-color 0.15s ease;
+  border: 2px solid
+    ${({ $active }) => ($active ? colors.teal : "transparent")};
+  opacity: ${({ $active }) => ($active ? 1 : 0.55)};
+  transition: ${transition.base};
 
   &:hover {
     opacity: 1;
+    transform: translateY(-2px);
   }
 
   @media (max-width: 576px) {
@@ -92,7 +95,9 @@ export const IconContainer = styled(Grid).attrs({
   direction: "row",
 })`
   display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  ${revealStyle}
 `;
 export const TextContainer = styled(Grid).attrs({
   container: true,
@@ -101,66 +106,84 @@ export const TextContainer = styled(Grid).attrs({
   display: flex;
   white-space: break-spaces;
   margin-top: 20px;
+  padding: 24px 28px;
+  background: ${colors.tealTint};
+  border-radius: ${radius.md};
   justify-content: space-between;
+  ${revealStyle}
 `;
 export const TextHeaders = styled.div`
   font-size: 25px;
   font-weight: bold;
   text-transform: capitalize;
+  color: ${colors.ink};
   @media (max-width: 576px) {
-      font-size: 15px;
+    font-size: 15px;
   }
 `;
 export const Title = styled.div`
   align-self: center;
+  font-family: ${font.display};
   font-size: 35px;
+  font-weight: 600;
+  background: ${gradients.text};
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
   @media (max-width: 576px) {
-      font-size: 15px;
+    font-size: 22px;
   }
 `;
 export const Description = styled.div`
-  font-size: 25px;
+  font-size: 20px;
+  line-height: 165%;
+  color: ${colors.slate};
   padding: 40px 40px;
+  border-left: 4px solid ${colors.teal};
+  ${revealStyle}
 
   @media (max-width: 576px) {
-      font-size: 15px;
+    font-size: 15px;
+    padding: 20px 16px;
   }
 `;
 export const IconText = styled.div`
   margin: 0 30px 0 10px;
   font-size: 20px;
   font-weight: bold;
+  color: ${colors.ink};
 
   @media (max-width: 576px) {
-      font-size: 20px;
+    font-size: 20px;
   }
 `;
 export const Bed = styled(BedIcon)`
   && {
-    color: teal;
-    height: 25spx;
+    color: ${colors.teal};
+    height: 25px;
     width: 25px;
   }
 `;
 export const Bath = styled(BathtubIcon)`
   && {
-    color: teal;
+    color: ${colors.teal};
     height: 25px;
     width: 25px;
   }
 `;
 export const Verified = styled(VerifiedIcon)`
   && {
-    color: gold;
+    color: ${colors.gold};
     height: 30px;
     width: 30px;
     margin-right: 30px;
+    animation: ${pulse} 2.4s ease-in-out infinite;
   }
 `;
 export const Area = styled(SquareFootIcon)`
   && {
-    color: teal;
+    color: ${colors.teal};
     height: 25px;
     width: 25px;
   }
@@ -174,23 +197,34 @@ export const AmenitiesContainer = styled(Grid).attrs({
   margin-top: 20px;
   justify-content: space-evenly;
   font-size: 20px;
-  color: white;
+  gap: 16px;
+  ${revealStyle}
 `;
 export const AmenitiesTitle = styled.div`
- font-size: 25px;
- font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: ${colors.ink};
 
   @media (max-width: 576px) {
-      font-size: 15px;
+    font-size: 15px;
   }
 `;
 export const Amenitiesitem = styled.div`
-margin-top: inherit;
-background: teal;
-padding: 20px;
-border-radius: 10px;
+  margin-top: inherit;
+  background: ${gradients.button};
+  color: ${colors.white};
+  padding: 14px 22px;
+  border-radius: ${radius.pill};
+  box-shadow: ${shadow.soft};
+  transition: ${transition.base};
 
- @media (max-width: 576px) {
-      padding: 5px;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: ${shadow.button};
+    background: ${gradients.buttonHover};
+  }
+
+  @media (max-width: 576px) {
+    padding: 8px 14px;
   }
 `;

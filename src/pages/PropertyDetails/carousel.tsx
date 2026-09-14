@@ -41,7 +41,7 @@ export default function Carousel({ photos }: CarouselItems) {
   return (
     <PropertyImageContainer>
       <Typography>{photos[activeStep].title}</Typography>
-      <PropertyImage src={photos[activeStep].url}></PropertyImage>
+      <PropertyImage key={activeStep} src={photos[activeStep].url}></PropertyImage>
       <MobileStepper
         variant="text"
         position="static"
