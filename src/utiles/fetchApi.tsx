@@ -9,7 +9,7 @@ export const propertyFinderUrl = `https://${apiHost}`;
 export const fetchApi = async (url: string) => {
   if (!apiKey) {
     throw new Error(
-      "Missing REACT_APP_RAPIDAPI_KEY. Set it in a .env.local file (see .env.example)."
+      "Missing REACT_APP_RAPIDAPI_KEY. Set it in a .env.local file (see .env.example).",
     );
   }
   const { data } = await axios.get(url, {
