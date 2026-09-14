@@ -29,13 +29,14 @@ export default function Carousel({ photos }: CarouselItems) {
       <Typography>{photos[activeStep].title}</Typography>
       <PropertyImage src={photos[activeStep].url}></PropertyImage>
       <MobileStepper
+        variant="text"
         position="static"
         activeStep={activeStep}
-        sx={{ maxWidth: 400, flexGrow: 1 }}
+        sx={{ width: "60%", flexGrow: 1 }}
         steps={photos.length}
         nextButton={
           <Button
-            size="large"
+            size="small"
             onClick={handleNext}
             disabled={activeStep === photos.length - 1}
           >
@@ -48,7 +49,7 @@ export default function Carousel({ photos }: CarouselItems) {
           </Button>
         }
         backButton={
-          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
