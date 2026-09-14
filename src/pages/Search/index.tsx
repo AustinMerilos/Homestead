@@ -49,7 +49,7 @@ function Search() {
       location,
       searchType: purpose === "for-rent" ? "For_Rent" : "For_Sale",
       page: String(page + 1),
-      resultCount: "10",
+      resultCount: "12",
       priceRange: `min:${priceMin},max:${priceMax}`,
       areaRange: `max:${areaMax}`,
     });
