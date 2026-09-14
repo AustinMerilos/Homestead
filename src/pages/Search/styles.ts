@@ -38,7 +38,7 @@ export const InnerContainer = styled.div`
   gap: 24px;
   max-width: 1278px;
   margin: 4vw auto 0;
-  padding: 0 24px 10px;
+  padding: 0 24px;
 
   @media (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
@@ -50,7 +50,7 @@ export const InnerContainer = styled.div`
 
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
-    padding: 0 16px 10px;
+    padding: 0 16px;
     gap: 16px;
   }
 `;
@@ -115,6 +115,13 @@ export const NoResults = styled.img`
 export const PaginationContainer = styled.div`
   display: flex;
   place-content: space-evenly;
+  margin-top: 40px;
+  padding-bottom: 48px;
+
+  @media (max-width: 576px) {
+    margin-top: 28px;
+    padding-bottom: 32px;
+  }
 
   .MuiPaginationItem-root {
     font-weight: 600;

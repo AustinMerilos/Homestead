@@ -28,7 +28,7 @@ root.render(
           ></Route>
         </Routes>
       </Router>
-      <Footer title={"2023 Homestead."}></Footer>
+      <Footer siteName="Homestead"></Footer>
     </>
   </React.StrictMode>
 );
