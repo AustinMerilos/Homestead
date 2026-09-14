@@ -95,6 +95,7 @@ export default function Home() {
           return (
             <PropertySection
               key={array.id || index}
+              delay={index * 90}
               title={array.title}
               baths={array.baths}
               rooms={array.rooms}
@@ -123,6 +124,7 @@ export default function Home() {
           return (
             <PropertySection
               key={array.id || index}
+              delay={index * 90}
               title={array.title}
               baths={array.baths}
               rooms={array.rooms}

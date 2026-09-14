@@ -6,7 +6,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import { PropertyImage, PropertyImageContainer } from "./styles";
+import {
+  PropertyImage,
+  PropertyImageContainer,
+  Thumbnail,
+  ThumbnailStrip,
+} from "./styles";
 
 //Image Carousel for the property details page
 type CarouselItems = {
@@ -15,6 +20,7 @@ type CarouselItems = {
 export default function Carousel({ photos }: CarouselItems) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+  const activeThumbRef = React.useRef<HTMLImageElement>(null);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -24,18 +30,27 @@ export default function Carousel({ photos }: CarouselItems) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  React.useEffect(() => {
+    activeThumbRef.current?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [activeStep]);
+
   return (
     <PropertyImageContainer>
       <Typography>{photos[activeStep].title}</Typography>
-      <PropertyImage src={photos[activeStep].url}></PropertyImage>
+      <PropertyImage key={activeStep} src={photos[activeStep].url}></PropertyImage>
       <MobileStepper
+        variant="text"
         position="static"
         activeStep={activeStep}
-        sx={{ maxWidth: 400, flexGrow: 1 }}
+        sx={{ width: "60%", flexGrow: 1 }}
         steps={photos.length}
         nextButton={
           <Button
-            size="large"
+            size="small"
             onClick={handleNext}
             disabled={activeStep === photos.length - 1}
           >
@@ -48,7 +63,7 @@ export default function Carousel({ photos }: CarouselItems) {
           </Button>
         }
         backButton={
-          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
@@ -58,6 +73,20 @@ export default function Carousel({ photos }: CarouselItems) {
           </Button>
         }
       />
+      {photos.length > 1 && (
+        <ThumbnailStrip>
+          {photos.map((photo, index) => (
+            <Thumbnail
+              key={photo.url + index}
+              ref={index === activeStep ? activeThumbRef : undefined}
+              src={photo.url}
+              alt={photo.title ?? "property thumbnail"}
+              $active={index === activeStep}
+              onClick={() => setActiveStep(index)}
+            />
+          ))}
+        </ThumbnailStrip>
+      )}
     </PropertyImageContainer>
   );
 }

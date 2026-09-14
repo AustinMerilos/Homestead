@@ -7,7 +7,7 @@ import {
   NoResults,
   NoResultsContainer,
   NoResultsTitle,
-  Loader,
+  ResultsFadeIn,
 } from "./styles";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PropertySection from "../Home/sections";
@@ -16,6 +16,7 @@ import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { useSearchParams } from "react-router-dom";
 import images from "../../assets";
 import SearchPagination from "./pagination";
+import SearchSkeleton from "./skeleton";
 
 type PropertyType = {
   title?: string;
@@ -49,7 +50,7 @@ function Search() {
       location,
       searchType: purpose === "for-rent" ? "For_Rent" : "For_Sale",
       page: String(page + 1),
-      resultCount: "10",
+      resultCount: "12",
       priceRange: `min:${priceMin},max:${priceMax}`,
       areaRange: `max:${areaMax}`,
     });
@@ -98,13 +99,14 @@ function Search() {
         )}
       </Container>
       {loading === false ? (
-        <Loader />
+        <SearchSkeleton />
       ) : (
-        <>
+        <ResultsFadeIn>
           <InnerContainer>
-            {propertyArray.map((property) => (
+            {propertyArray.map((property, index) => (
               <PropertySection
                 key={property.id}
+                delay={index * 60}
                 image={property.images?.[0]}
                 title={property.title}
                 price={property.price}
@@ -122,7 +124,7 @@ function Search() {
             </NoResultsContainer>
           )}
           <SearchPagination setPage={setPage} page={page} />
-        </>
+        </ResultsFadeIn>
       )}
     </>
   );

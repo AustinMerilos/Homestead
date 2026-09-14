@@ -2,12 +2,16 @@ import React from "react";
 import { Container, Font } from "./styles";
 
 interface FooterProps {
-  title: string;
+  siteName: string;
 }
-const Footer = ({ title }: FooterProps) => {
+const Footer = ({ siteName }: FooterProps) => {
+  const year = new Date().getFullYear();
+
   return (
     <Container>
-      <Font>{title}</Font>
+      <Font>
+        © {year} {siteName}
+      </Font>
     </Container>
   );
 };

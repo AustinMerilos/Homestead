@@ -3,7 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { propertyFinderUrl, fetchApi } from "../../utiles/fetchApi";
 import { areaFormat, numberFormat } from "../../utiles/numberFormater";
+import { useReveal } from "../../components/reveal";
 import Carousel from "./carousel";
+import DetailsSkeleton from "./skeleton";
 import {
   AmenitiesContainer,
   Amenitiesitem,
@@ -12,10 +14,10 @@ import {
   Bath,
   Bed,
   Container,
+  ContentFadeIn,
   Description,
   IconContainer,
   IconText,
-  Loader,
   TextContainer,
   TextHeaders,
   Title,
@@ -43,9 +45,14 @@ export default function PropertyDetails() {
   const [amenities, setAmenities] = useState<string[]>([]);
   const [isVerified, setIsVerified] = useState(false);
   const [dealType, setDealType] = useState();
+  const [propertyCategory, setPropertyCategory] = useState();
   const [furnishingStatus, setFurnishingStatus] = useState();
   const formater = useMemo(() => numberFormat(Number(price)), [price]);
   const areaFormater = useMemo(() => areaFormat(Number(area)), [area]);
+  const iconsReveal = useReveal<HTMLDivElement>(0);
+  const priceReveal = useReveal<HTMLDivElement>(80);
+  const descriptionReveal = useReveal<HTMLDivElement>(160);
+  const amenitiesReveal = useReveal<HTMLDivElement>(240);
 
   const getResults = useCallback(async () => {
     const results = await fetchApi(
@@ -60,6 +67,7 @@ export default function PropertyDetails() {
     setBaths(searchData.bathrooms);
     setArea(searchData.size);
     setDealType(searchData.dealType);
+    setPropertyCategory(searchData.propertyType);
     setFurnishingStatus(searchData.additionalDetails?.Furnishings);
     setRentFrequency(searchData.rentFrequency);
     setDescription(searchData.description);
@@ -74,24 +82,32 @@ export default function PropertyDetails() {
     getResults();
   }, [getResults]);
 
-  let propertyType = "";
-  if (dealType === "For_Rent") {
-    propertyType = " Renting";
-  }
-  if (dealType === "For_Sale") {
-    propertyType = "Selling";
+  // dealType's exact casing/format from the live API is unconfirmed (every
+  // real response seen so far was a sale listing). Match loosely on
+  // "rent"/"sale" instead of an exact string, and fall back to rentFrequency
+  // being present (only ever populated on rentals) or the raw value itself,
+  // so a rental never silently renders blank just because the API's string
+  // doesn't match what we guessed.
+  const dealTypeText = String(dealType ?? "").toLowerCase();
+  let listingType = "";
+  if (dealTypeText.includes("rent") || rentFrequency) {
+    listingType = rentFrequency ? `For Rent (${rentFrequency})` : "For Rent";
+  } else if (dealTypeText.includes("sale")) {
+    listingType = "For Sale";
+  } else if (dealType) {
+    listingType = String(dealType).replace(/_/g, " ");
   }
 
   return (
     <Container>
       {loading === true ? (
-        <Loader />
+        <DetailsSkeleton />
       ) : (
-        <>
+        <ContentFadeIn>
           <Title>{title} </Title>
           <Carousel photos={photos}></Carousel>
 
-          <IconContainer>
+          <IconContainer {...iconsReveal}>
             {isVerified && <Verified />}
             <Bed />
             <IconText>{rooms}</IconText>
@@ -100,27 +116,25 @@ export default function PropertyDetails() {
             <Area />
             <IconText>{areaFormater} sqft</IconText>
           </IconContainer>
-          <IconContainer>
-            <TextContainer>
-              <TextHeaders>Price: {formater} </TextHeaders>
-              {rentFrequency && <TextHeaders>{rentFrequency}</TextHeaders>}
-              <TextHeaders>Property Type: {propertyType}</TextHeaders>
-              <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
-            </TextContainer>
-          </IconContainer>
+          <TextContainer {...priceReveal}>
+            <TextHeaders>Price: {formater} </TextHeaders>
+            <TextHeaders>Listing: {listingType}</TextHeaders>
+            <TextHeaders>Property Type: {propertyCategory}</TextHeaders>
+            <TextHeaders>Furnished Status: {furnishingStatus}</TextHeaders>
+          </TextContainer>
 
-          <Description>{description}</Description>
+          <Description {...descriptionReveal}>{description}</Description>
           {amenities.length > 0 && (
             <>
               <AmenitiesTitle>Amenities:</AmenitiesTitle>
-              <AmenitiesContainer>
+              <AmenitiesContainer {...amenitiesReveal}>
                 {amenities.map((amenity, index) => (
                   <Amenitiesitem key={index}>{amenity}</Amenitiesitem>
                 ))}
               </AmenitiesContainer>
             </>
           )}
-        </>
+        </ContentFadeIn>
       )}
     </Container>
   );

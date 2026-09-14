@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Reveal from "../../components/reveal";
 import {
   BannerButton,
   BannerContainer,
@@ -27,17 +28,19 @@ export default function BannerSections({
   return (
     <>
       <Container>
-        <BannerContainer>
-          <Banner src={image} alt="house image"></Banner>
-          <BannerContainerContent>
-            <BannerTitle>{title}</BannerTitle>
-            <BannerDescription>{description}</BannerDescription>
-            <Link to={link}>
-              {" "}
-              <BannerButton>{button}</BannerButton>
-            </Link>
-          </BannerContainerContent>
-        </BannerContainer>
+        <Reveal>
+          <BannerContainer>
+            <Banner src={image} alt="house image"></Banner>
+            <BannerContainerContent>
+              <BannerTitle>{title}</BannerTitle>
+              <BannerDescription>{description}</BannerDescription>
+              <Link to={link}>
+                {" "}
+                <BannerButton>{button}</BannerButton>
+              </Link>
+            </BannerContainerContent>
+          </BannerContainer>
+        </Reveal>
       </Container>
     </>
   );
