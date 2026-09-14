@@ -82,12 +82,20 @@ export default function PropertyDetails() {
     getResults();
   }, [getResults]);
 
+  // dealType's exact casing/format from the live API is unconfirmed (every
+  // real response seen so far was a sale listing). Match loosely on
+  // "rent"/"sale" instead of an exact string, and fall back to rentFrequency
+  // being present (only ever populated on rentals) or the raw value itself,
+  // so a rental never silently renders blank just because the API's string
+  // doesn't match what we guessed.
+  const dealTypeText = String(dealType ?? "").toLowerCase();
   let listingType = "";
-  if (dealType === "For_Rent") {
+  if (dealTypeText.includes("rent") || rentFrequency) {
     listingType = rentFrequency ? `For Rent (${rentFrequency})` : "For Rent";
-  }
-  if (dealType === "For_Sale") {
+  } else if (dealTypeText.includes("sale")) {
     listingType = "For Sale";
+  } else if (dealType) {
+    listingType = String(dealType).replace(/_/g, " ");
   }
 
   return (
