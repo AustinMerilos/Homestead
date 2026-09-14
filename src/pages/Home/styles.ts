@@ -149,12 +149,10 @@ const PropertySectionContainer = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  padding: 1.5vw 1.5vw 2vw;
-  margin: 0 1.5vw 2vw;
+  padding: 1.2vw 1.2vw 1.6vw;
   justify-content: flex-start;
   align-items: center;
-  height: 100%;
-  width: 50%;
+  width: 100%;
   box-sizing: border-box;
   background: ${colors.white};
   border-radius: ${radius.lg};
@@ -167,19 +165,28 @@ const PropertySectionContainer = styled.div<{
   }
 
   @media (max-width: 576px) {
-    width: 100%;
-    margin: 0 0 4vw;
+    padding: 16px;
   }
 
   ${revealStyle}
 `;
 
 const PropertySectionInnerContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1278px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: 576px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 16px;
   }
 `;
 
@@ -244,19 +251,14 @@ const PropertySectionIconContainer = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
-  width: 25vw;
-  height: 20vw; /* Match the image’s sizing */
+  width: 100%;
+  aspect-ratio: 5 / 4;
   display: flex;
   justify-content: center;
   align-items: center;
   background: ${colors.tealTint};
   overflow: hidden;
   border-radius: ${radius.md};
-
-  @media (max-width: 576px) {
-    width: 100%;
-    height: 40vw;
-  }
 `;
 
 const Spinner = styled.div`
@@ -271,20 +273,14 @@ const Spinner = styled.div`
 `;
 
 const PropertySectionImage = styled.img`
-  width: 25vw;
-  height: 20vw;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: ${radius.md};
   transition: ${transition.slow};
 
   &:hover {
     transform: scale(1.06);
-  }
-
-  @media (max-width: 576px) {
-    width: 100%;
-    height: 40vw;
-    margin: 20px 0;
   }
 `;
 export {

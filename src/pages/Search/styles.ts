@@ -10,38 +10,48 @@ export const Container = styled(Grid).attrs({
   display: flex;
   align-items: center;
   background: ${gradients.hero};
-  padding: 40px 120px;
+  padding: 40px 60px;
   margin-top: 2vw;
   box-shadow: ${shadow.soft};
 
   @media (max-width: 576px) {
-    padding: 20px 30px;
-    margin-top: 20vw;
+    padding: 20px 20px;
+    margin-top: 0;
   }
 `;
 export const Loader = styled(CircularProgress).attrs({ size: 250 })`
   && {
-    margin: 200px 620px;
-    align-self: center;
+    display: block;
+    margin: 200px auto;
     color: ${colors.teal};
   }
 
   && {
     @media (max-width: 576px) {
-      margin: 100px 50px;
+      margin: 80px auto;
     }
   }
 `;
-export const InnerContainer = styled(Grid).attrs({
-  container: true,
-  direction: "row",
-})`
-  display: flex;
-  padding: 60px 120px 10px;
-  margin-top: 4vw;
+export const InnerContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1278px;
+  margin: 4vw auto 0;
+  padding: 0 24px 10px;
 
-  @media (max-width: 576px) {
-    padding: 20px 60px 10px;
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    padding: 0 16px 10px;
+    gap: 16px;
   }
 `;
 export const NoResultsContainer = styled(Grid).attrs({
